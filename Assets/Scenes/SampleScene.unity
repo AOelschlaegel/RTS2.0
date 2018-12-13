@@ -231,6 +231,26 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 2056488, guid: 407bd5cbe8c43334bb1b25c0f3826974,
     type: 2}
   m_PrefabInternal: {fileID: 1826635632}
+--- !u!1 &1672653176 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1110686606777382, guid: d79cfb5b8c5b93e49a85a5a66a9d097d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1676991230}
+--- !u!54 &1672653179
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1672653176}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1676991230
 Prefab:
   m_ObjectHideFlags: 0
