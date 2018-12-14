@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4450632472526402}
   - component: {fileID: 65247992830257788}
   - component: {fileID: 54537206156383136}
+  - component: {fileID: 114972964326425692}
   m_Layer: 0
   m_Name: Pumpkins
   m_TagString: resource
@@ -141,3 +142,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.6993237, y: 0.9423027, z: 1.8430383}
   m_Center: {x: -0.043052793, y: -0.028848648, z: -0.019837022}
+--- !u!114 &114972964326425692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1811523335206892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd01fdbd48c625f46b3bc8bc64492f0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Resources: 10

@@ -15,6 +15,7 @@ public class SelectionManager : MonoBehaviour
 	[SerializeField] private Text _selectionText;
 
 	public GameObject selectedObject;
+	public ResourceCount resourceCount;
 
 
 	public void Start()
@@ -24,7 +25,17 @@ public class SelectionManager : MonoBehaviour
 
 	public void Update()
 	{
-		if(GameObject.FindGameObjectWithTag("unitSelectionOutline") != null)
+		if(selectedObject != null)
+		{
+			_selectionText.text = selectedObject.name;
+
+			if(resourceCount != null && selectedObject.tag != _unitColliderTagName && selectedObject.tag != _buildingColliderTagName)
+			{
+				_selectionText.text = selectedObject.name + ": " + resourceCount.Resources;
+			}
+		} else _selectionText.text = null;
+
+		if (GameObject.FindGameObjectWithTag("unitSelectionOutline") != null)
 		{
 			var unitSelection = GameObject.FindGameObjectWithTag("unitSelectionOutline");
 			
@@ -44,7 +55,7 @@ public class SelectionManager : MonoBehaviour
 					Destroy(GameObject.FindGameObjectWithTag(_unitOutlineTagName));
 					Instantiate(_resourceSelectionOutline, hit.transform.position, Quaternion.identity);
 					selectedObject = hit.transform.gameObject;
-					_selectionText.text = selectedObject.name;
+					resourceCount = hit.transform.gameObject.GetComponent<ResourceCount>();
 				}
 				else if (hit.transform.CompareTag(_buildingColliderTagName))
 				{
@@ -52,7 +63,6 @@ public class SelectionManager : MonoBehaviour
 					Destroy(GameObject.FindGameObjectWithTag(_unitOutlineTagName));
 					Instantiate(_buildingSelectionOutline, hit.transform.position, Quaternion.identity);
 					selectedObject = hit.transform.gameObject;
-					_selectionText.text = selectedObject.name;
 				}
 				else if (hit.transform.CompareTag(_unitColliderTagName))
 				{
@@ -60,7 +70,6 @@ public class SelectionManager : MonoBehaviour
 					Destroy(GameObject.FindGameObjectWithTag(_outlineTagName));
 					Instantiate(_unitSelectionOutline, hit.transform.position, Quaternion.identity);
 					selectedObject = hit.transform.gameObject;
-					_selectionText.text = selectedObject.name;
 				}
 				else
 				{

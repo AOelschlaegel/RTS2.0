@@ -16,6 +16,8 @@ public class AnimationController : MonoBehaviour
 	public float ResourceTime;
 	private float _timePerResource = 5f;
 
+	public ResourceCount CurrentResource;
+
 	private void Start()
 	{
 		_animator = GetComponent<Animator>();
@@ -39,13 +41,17 @@ public class AnimationController : MonoBehaviour
 	{
 		if(other.tag == _resourceTag)
 		{
-			transform.LookAt(other.transform);
-			_animator.SetBool("isGathering", true);
-
 			if (other.name == "Pumpkins")
 			{
-				resource = "food";
-				IsCollectingFood = true;
+				CurrentResource = other.gameObject.GetComponent<ResourceCount>();
+
+				if (CurrentResource.Resources > 0)
+				{
+					resource = "food";
+					IsCollectingFood = true;
+					_animator.SetBool("isGathering", true);
+					transform.LookAt(other.transform);
+				}
 			}
 		}
 	}
@@ -57,6 +63,7 @@ public class AnimationController : MonoBehaviour
 			_animator.SetBool("isGathering", false);
 			resource = null;
 			IsCollectingFood = false;
+			CurrentResource = null;
 		}
 	}
 
@@ -70,6 +77,7 @@ public class AnimationController : MonoBehaviour
 			{
 				_resourceManager.food++;
 				ResourceTime = _timePerResource;
+				CurrentResource.Resources--;
 			}
 		}
 	}
