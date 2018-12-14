@@ -6,6 +6,8 @@ public class AnimationController : MonoBehaviour
 	private Vector3 _oldPos;
 	private Vector3 _newPos;
 
+	[SerializeField] private string _resourceTag;
+
 	private void Start()
 	{
 		_animator = GetComponent<Animator>();
@@ -21,5 +23,22 @@ public class AnimationController : MonoBehaviour
 		} else _animator.SetBool("isWalking", false);
 
 		_oldPos = transform.position;
+	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		if(other.tag == _resourceTag)
+		{
+			transform.LookAt(other.transform);
+			_animator.SetBool("isGathering", true);
+		}
+	}
+
+	void OnTriggerExit(Collider other)
+	{
+		if (other.tag == _resourceTag)
+		{
+			_animator.SetBool("isGathering", false);
+		}
 	}
 }

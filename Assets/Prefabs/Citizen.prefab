@@ -3607,8 +3607,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.3550072, z: 1}
-  m_Center: {x: 0, y: 0.6775036, z: 0}
+  m_Size: {x: 0.99154854, y: 2.3550072, z: 0.97274387}
+  m_Center: {x: -0.010379791, y: 0.6775036, z: 0.00070530176}
 --- !u!65 &65991449215205834
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -3650,6 +3650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b38cb69da4b95245847379f0b6894c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _resourceTag: resource
 --- !u!137 &137039421225698232
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
