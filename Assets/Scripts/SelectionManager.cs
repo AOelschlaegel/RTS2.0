@@ -27,6 +27,8 @@ public class SelectionManager : MonoBehaviour
 		if(GameObject.FindGameObjectWithTag("unitSelectionOutline") != null)
 		{
 			var unitSelection = GameObject.FindGameObjectWithTag("unitSelectionOutline");
+			
+			if(selectedObject.tag == _unitColliderTagName)
 			unitSelection.transform.position = selectedObject.transform.position;
 		}
 
@@ -39,6 +41,7 @@ public class SelectionManager : MonoBehaviour
 				if (hit.transform.CompareTag(_resourceColliderTagName))
 				{
 					Destroy(GameObject.FindGameObjectWithTag(_outlineTagName));
+					Destroy(GameObject.FindGameObjectWithTag(_unitOutlineTagName));
 					Instantiate(_resourceSelectionOutline, hit.transform.position, Quaternion.identity);
 					selectedObject = hit.transform.gameObject;
 					_selectionText.text = selectedObject.name;
@@ -46,6 +49,7 @@ public class SelectionManager : MonoBehaviour
 				else if (hit.transform.CompareTag(_buildingColliderTagName))
 				{
 					Destroy(GameObject.FindGameObjectWithTag(_outlineTagName));
+					Destroy(GameObject.FindGameObjectWithTag(_unitOutlineTagName));
 					Instantiate(_buildingSelectionOutline, hit.transform.position, Quaternion.identity);
 					selectedObject = hit.transform.gameObject;
 					_selectionText.text = selectedObject.name;
@@ -53,6 +57,7 @@ public class SelectionManager : MonoBehaviour
 				else if (hit.transform.CompareTag(_unitColliderTagName))
 				{
 					Destroy(GameObject.FindGameObjectWithTag(_unitOutlineTagName));
+					Destroy(GameObject.FindGameObjectWithTag(_outlineTagName));
 					Instantiate(_unitSelectionOutline, hit.transform.position, Quaternion.identity);
 					selectedObject = hit.transform.gameObject;
 					_selectionText.text = selectedObject.name;
