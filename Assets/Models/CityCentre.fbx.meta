@@ -1,25 +1,38 @@
 fileFormatVersion: 2
-guid: e008cd2628d2fa343892f01a482f0d63
+guid: 38c5e92e0470e7640a417a7f6bf2143d
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Plane
-    100002: //RootNode
-    100004: Pumpkins
-    400000: Plane
-    400002: //RootNode
-    400004: Pumpkins
-    2100000: Pumpkin
-    2300000: Pumpkins
-    3300000: Pumpkins
-    4300000: Pumpkins
-    2186277476908879412: ImportLogs
+    100000: //RootNode
+    400000: //RootNode
+    2100000: DefaultBuildingMat
+    2100002: CityCentre
+    2100004: No Name
+    2100006: RoofMarking
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: CityCentre
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Pumpkin
-    second: {fileID: 2100000, guid: 11183d453bb2aa04a97b542b8c2b17ac, type: 2}
+      name: CityCentre
+    second: {fileID: 2100000, guid: 6f22a4f0c36552c418fbd80f0fe515d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DefaultBuildingMat
+    second: {fileID: 2100000, guid: 1a3bf82899efd7a468b38931fd010c15, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: a0e25564f4883574a98f3a39db0a1cf5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RoofMarking
+    second: {fileID: 2100000, guid: ee949f87b6b574d40a88e036449c9cf9, type: 2}
   materials:
     importMaterials: 1
     materialName: 1
@@ -53,12 +66,12 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    importVisibility: 0
+    importVisibility: 1
     importBlendShapes: 1
-    importCameras: 0
-    importLights: 0
+    importCameras: 1
+    importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
@@ -66,16 +79,16 @@ ModelImporter:
     preserveHierarchy: 0
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15
-    secondaryUVHardAngle: 119
-    secondaryUVPackMargin: 19
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
     hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
-    normalSmoothAngle: 56
+    normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 0
+    tangentImportMode: 3
     normalCalculationMode: 4
   importAnimation: 1
   copyAvatar: 0

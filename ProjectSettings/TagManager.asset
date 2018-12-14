@@ -9,6 +9,8 @@ TagManager:
   - pivot
   - gatherZone
   - resource
+  - selectionOutline
+  - DropZone
   layers:
   - Default
   - TransparentFX

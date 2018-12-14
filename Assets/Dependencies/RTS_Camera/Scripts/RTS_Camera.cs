@@ -191,11 +191,7 @@ namespace RTS_Cam
         /// </summary>
         private void CameraUpdate()
         {
-            if (FollowingTarget)
-                FollowTarget();
-            else
-                Move();
-
+			Move();
             HeightCalculation();
             Rotation();
             LimitPosition();
@@ -289,11 +285,11 @@ namespace RTS_Cam
         /// <summary>
         /// follow targetif target != null
         /// </summary>
-        private void FollowTarget()
+        /*private void FollowTarget()
         {
             Vector3 targetPos = new Vector3(targetFollow.position.x, m_Transform.position.y, targetFollow.position.z) + targetOffset;
             m_Transform.position = Vector3.MoveTowards(m_Transform.position, targetPos, Time.deltaTime * followingSpeed);
-        }
+        }*/
 
         /// <summary>
         /// limit camera position
