@@ -11,6 +11,7 @@ TagManager:
   - resource
   - selectionOutline
   - DropZone
+  - building
   layers:
   - Default
   - TransparentFX

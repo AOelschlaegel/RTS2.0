@@ -23,7 +23,9 @@ public class MovementController : MonoBehaviour
 
 	public string CurrentResourceObject;
 	public string CurrentResource;
-	public bool pivotSet;
+	public bool PivotSet;
+
+	public bool BringToNextCityCentre;
 
 	public float ResourceTime;
 	private float _timePerResource = 2;
@@ -73,11 +75,11 @@ public class MovementController : MonoBehaviour
 			}
 		}
 
-		if (food == maxCarryWeight && pivotSet == false)
+		if (food >= maxCarryWeight && PivotSet == false && BringToNextCityCentre)
 		{
 			Destroy(GameObject.FindGameObjectWithTag("pivot"));
 			Instantiate(_pivot, CurrentDropZone.transform.GetChild(0).transform.position, Quaternion.identity);
-			pivotSet = true;
+			PivotSet = true;
 		}
 
 			var oldPos = transform.position;

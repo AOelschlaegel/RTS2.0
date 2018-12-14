@@ -416,7 +416,8 @@ MonoBehaviour:
   maxCarryWeight: 3
   CurrentResourceObject: 
   CurrentResource: 
-  pivotSet: 0
+  PivotSet: 0
+  BringToNextCityCentre: 0
   ResourceTime: 0
   food: 0
 --- !u!65 &1095738417
@@ -560,9 +561,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4ea1cc093c0a14478ff3084f3d8a581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _colliderTagName: resource
+  _resourceColliderTagName: resource
+  _buildingColliderTagName: building
   _outlineTagName: selectionOutline
-  _selectionOutline: {fileID: 1221201041178708, guid: 3504248de51ce354ba1880e3a530b2b7,
+  _resourceSelectionOutline: {fileID: 1221201041178708, guid: 3504248de51ce354ba1880e3a530b2b7,
+    type: 2}
+  _buildingSelectionOutline: {fileID: 1221201041178708, guid: b1d95ed80abff8c45bf86980a8d50e25,
     type: 2}
   _selectionText: {fileID: 1842754404}
   selectedObject: {fileID: 0}
@@ -1281,6 +1285,27 @@ Prefab:
       propertyPath: m_TagString
       value: DropZone
       objectReference: {fileID: 0}
+    - target: {fileID: 1925238120930058, guid: 6086d2b3dff7b354fb77e2228cab867f, type: 2}
+      propertyPath: m_TagString
+      value: building
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6086d2b3dff7b354fb77e2228cab867f, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &2073032689 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1925238120930058, guid: 6086d2b3dff7b354fb77e2228cab867f,
+    type: 2}
+  m_PrefabInternal: {fileID: 2073032688}
+--- !u!65 &2073032690
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2073032689}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 3, z: 3.9999998}
+  m_Center: {x: 0, y: 1.5, z: 0.00000011920929}
