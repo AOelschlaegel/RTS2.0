@@ -5,21 +5,31 @@ public class SelectionManager : MonoBehaviour
 {
 	[SerializeField] private string _resourceColliderTagName;
 	[SerializeField] private string _buildingColliderTagName;
+	[SerializeField] private string _unitColliderTagName;
 	[SerializeField] private string _outlineTagName;
+	[SerializeField] private string _unitOutlineTagName;
 	[SerializeField] private GameObject _resourceSelectionOutline;
 	[SerializeField] private GameObject _buildingSelectionOutline;
+	[SerializeField] private GameObject _unitSelectionOutline;
 
 	[SerializeField] private Text _selectionText;
 
 	public GameObject selectedObject;
 
-	private void Start()
+
+	public void Start()
 	{
 		_selectionText.text = null;
 	}
 
-	private void Update()
+	public void Update()
 	{
+		if(GameObject.FindGameObjectWithTag("unitSelectionOutline") != null)
+		{
+			var unitSelection = GameObject.FindGameObjectWithTag("unitSelectionOutline");
+			unitSelection.transform.position = selectedObject.transform.position;
+		}
+
 		if (Input.GetMouseButtonDown(0))
 		{
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -40,16 +50,21 @@ public class SelectionManager : MonoBehaviour
 					selectedObject = hit.transform.gameObject;
 					_selectionText.text = selectedObject.name;
 				}
+				else if (hit.transform.CompareTag(_unitColliderTagName))
+				{
+					Destroy(GameObject.FindGameObjectWithTag(_unitOutlineTagName));
+					Instantiate(_unitSelectionOutline, hit.transform.position, Quaternion.identity);
+					selectedObject = hit.transform.gameObject;
+					_selectionText.text = selectedObject.name;
+				}
 				else
 				{
+					Destroy(GameObject.FindGameObjectWithTag(_unitOutlineTagName));
 					Destroy(GameObject.FindGameObjectWithTag(_outlineTagName));
 					selectedObject = null;
 					_selectionText.text = null;
 				}
-
-
 			}
 		}
 	}
-
 }
