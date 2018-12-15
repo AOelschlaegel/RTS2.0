@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +16,7 @@ public class SelectionManager : MonoBehaviour
 
 	[SerializeField] private Text _selectionText;
 
-	public GameObject selectedObject;
+	public List<GameObject> selectedObjects;
 	public ResourceCount resourceCount;
 
 	bool isSelecting = false;
@@ -24,28 +25,37 @@ public class SelectionManager : MonoBehaviour
 	public void Start()
 	{
 		_selectionText.text = null;
+		selectedObjects = new List<GameObject>();
 	}
 
 	public void Update()
 	{
-		if (selectedObject != null)
+		if (selectedObjects.Count != 0)
 		{
-			_selectionText.text = selectedObject.name;
-
-			if (resourceCount != null && selectedObject.tag != _unitColliderTagName && selectedObject.tag != _buildingColliderTagName)
+			if (selectedObjects.Count == 1)
 			{
-				_selectionText.text = selectedObject.name + ": " + resourceCount.Resources;
+				_selectionText.text = selectedObjects[0].name;
+
+				if (resourceCount != null && selectedObjects[0].tag != _unitColliderTagName && selectedObjects[0].tag != _buildingColliderTagName)
+				{
+					_selectionText.text = selectedObjects[0].name + ": " + resourceCount.Resources;
+				}
 			}
-		}
+
+			if (selectedObjects.Count > 1)
+			{
+				_selectionText.text = "GroupSelection";
+			}
+
+			if (GameObject.FindGameObjectWithTag("unitSelectionOutline") != null)
+			{
+				var unitSelection = GameObject.FindGameObjectWithTag("unitSelectionOutline");
+
+				if (selectedObjects[0].tag == _unitColliderTagName)
+					unitSelection.transform.position = selectedObjects[0].transform.position;
+			}
+		} 
 		else _selectionText.text = null;
-
-		if (GameObject.FindGameObjectWithTag("unitSelectionOutline") != null)
-		{
-			var unitSelection = GameObject.FindGameObjectWithTag("unitSelectionOutline");
-
-			if (selectedObject.tag == _unitColliderTagName)
-				unitSelection.transform.position = selectedObject.transform.position;
-		}
 
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
@@ -58,35 +68,38 @@ public class SelectionManager : MonoBehaviour
 
 				if (hit.transform.CompareTag(_resourceColliderTagName))
 				{
+					selectedObjects.Clear();
+					selectedObjects.Add(hit.transform.gameObject);
 					Instantiate(_resourceSelectionOutline, hit.transform.position, Quaternion.identity);
-					selectedObject = hit.transform.gameObject;
 					resourceCount = hit.transform.gameObject.GetComponent<ResourceCount>();
 				}
 
 				else if (hit.transform.CompareTag(_buildingColliderTagName))
 				{
+					selectedObjects.Clear();
+					selectedObjects.Add(hit.transform.gameObject);
 					Instantiate(_buildingSelectionOutline, hit.transform.position, Quaternion.identity);
-					selectedObject = hit.transform.gameObject;
 				}
 
 				else if (hit.transform.CompareTag(_unitColliderTagName))
 				{
+					selectedObjects.Clear();
+					selectedObjects.Add(hit.transform.gameObject);
 					Instantiate(_unitSelectionOutline, hit.transform.position, Quaternion.identity);
-					selectedObject = hit.transform.gameObject;
 				}
 
 				else
 				{
 					Destroy(GameObject.FindGameObjectWithTag(_unitOutlineTagName));
 					Destroy(GameObject.FindGameObjectWithTag(_outlineTagName));
-					selectedObject = null;
 					_selectionText.text = null;
+					selectedObjects.Clear();
 				}
 			}
 
 			if (Input.GetMouseButtonDown(1))
 			{
-				if (hit.transform.CompareTag(_resourceColliderTagName) && selectedObject.tag == _unitColliderTagName)
+				if (hit.transform.CompareTag(_resourceColliderTagName) && selectedObjects[0].tag == _unitColliderTagName)
 				{
 					StartCoroutine(SelectionBlinking(hit.transform));
 				}

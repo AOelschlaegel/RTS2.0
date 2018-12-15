@@ -1,32 +1,31 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class MovementManager : MonoBehaviour
 {
-
-	Camera cam;
-
 	public LayerMask groundLayer;
 
 	public NavMeshAgent playerAgent;
 
 	public SelectionManager _selectionManager;
 
-	public GameObject SelectedUnit;
+	public List<GameObject> selectedUnits;
 
 	#region UnityEvents
-	private void Awake()
+
+	private void Start()
 	{
-		cam = Camera.main;
+		selectedUnits = new List<GameObject>();
 	}
 
 	private void Update()
 	{
-		if (_selectionManager.selectedObject != null)
+		if (_selectionManager.selectedObjects.Count != 0)
 		{
-			playerAgent = _selectionManager.selectedObject.GetComponent<NavMeshAgent>();
-			SelectedUnit = _selectionManager.selectedObject;
+			selectedUnits.Add(_selectionManager.selectedObjects[0].gameObject);
+			playerAgent = selectedUnits[0].GetComponent<NavMeshAgent>();
 
 			if (Input.GetMouseButton(1))
 			{
@@ -34,6 +33,7 @@ public class MovementManager : MonoBehaviour
 			}
 		}
 		else playerAgent = null;
+		selectedUnits.Clear();
 	}
 
 
