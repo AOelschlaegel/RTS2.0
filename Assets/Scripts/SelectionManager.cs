@@ -20,6 +20,8 @@ public class SelectionManager : MonoBehaviour
 	public List<GameObject> selectedObjects;
 	public ResourceCount resourceCount;
 
+	public bool UnitSelected;
+
 	bool isSelecting = false;
 	Vector3 mousePosition1;
 
@@ -27,6 +29,7 @@ public class SelectionManager : MonoBehaviour
 	{
 		_selectionText.text = null;
 		selectedObjects = new List<GameObject>();
+		UnitSelected = false;
 	}
 
 	public void Update()
@@ -71,29 +74,38 @@ public class SelectionManager : MonoBehaviour
 				{
 					selectedObjects.Clear();
 					selectedObjects.Add(hit.transform.gameObject);
-					Instantiate(_resourceSelectionOutline, hit.transform.position, Quaternion.identity);
+					var instance = Instantiate(_resourceSelectionOutline, hit.transform.position, Quaternion.identity);
+					var ui = GameObject.Find("UI");
+					instance.transform.parent = ui.transform;
 					resourceCount = hit.transform.gameObject.GetComponent<ResourceCount>();
+					UnitSelected = false;
 				}
 
 				else if (hit.transform.CompareTag(_buildingColliderTagName))
 				{
 					selectedObjects.Clear();
 					selectedObjects.Add(hit.transform.gameObject);
-					Instantiate(_buildingSelectionOutline, hit.transform.position, Quaternion.identity);
+					var instance = Instantiate(_buildingSelectionOutline, hit.transform.position, Quaternion.identity);
+					var ui = GameObject.Find("UI");
+					instance.transform.parent = ui.transform;
+					UnitSelected = false;
 				}
 
 				else if (hit.transform.CompareTag(_unitColliderTagName))
 				{
 					selectedObjects.Clear();
 					selectedObjects.Add(hit.transform.gameObject);
-					Instantiate(_unitSelectionOutline, hit.transform.position, Quaternion.identity);
+					var instance = Instantiate(_unitSelectionOutline, hit.transform.position, Quaternion.identity);
+					var ui = GameObject.Find("UI");
+					instance.transform.parent = ui.transform;
+					UnitSelected = true;
 				}
-
 				else
 				{
 					Destroy(GameObject.FindGameObjectWithTag(_unitOutlineTagName));
 					Destroy(GameObject.FindGameObjectWithTag(_outlineTagName));
 					_selectionText.text = null;
+					UnitSelected = false;
 					selectedObjects.Clear();
 				}
 			}
@@ -120,6 +132,8 @@ public class SelectionManager : MonoBehaviour
 	IEnumerator SelectionBlinking(Transform resource)
 	{
 		var outline = Instantiate(_resourceDestinationOutline, resource.transform.position, Quaternion.identity);
+		var ui = GameObject.Find("UI");
+		outline.transform.parent = ui.transform;
 
 		if (outline != null)
 		{

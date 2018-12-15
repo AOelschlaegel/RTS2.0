@@ -7,33 +7,45 @@ public class MovementManager : MonoBehaviour
 {
 	public LayerMask groundLayer;
 
-	public NavMeshAgent playerAgent;
-
 	public SelectionManager _selectionManager;
 
 	public List<GameObject> selectedUnits;
+
+	public List<NavMeshAgent> playerAgents;
 
 	#region UnityEvents
 
 	private void Start()
 	{
 		selectedUnits = new List<GameObject>();
+		playerAgents = new List<NavMeshAgent>();
 	}
 
 	private void Update()
 	{
 		if (_selectionManager.selectedObjects.Count != 0)
 		{
-			selectedUnits.Add(_selectionManager.selectedObjects[0].gameObject);
-			playerAgent = selectedUnits[0].GetComponent<NavMeshAgent>();
+			if (_selectionManager.selectedObjects.Count != selectedUnits.Count && _selectionManager.UnitSelected == true)
+			{
+				var selection = _selectionManager.selectedObjects[0].gameObject;
+				var agent = selection.GetComponent<NavMeshAgent>();
+				AddToSelection(selection, agent);
+			}
 
 			if (Input.GetMouseButton(1))
 			{
-				playerAgent.SetDestination(GetPointUnderCursor());
+				foreach (NavMeshAgent agent in playerAgents)
+				{
+					agent.SetDestination(GetPointUnderCursor());
+				}
 			}
 		}
-		else playerAgent = null;
-		selectedUnits.Clear();
+
+		else
+		{
+			selectedUnits.Clear();
+			playerAgents.Clear();
+		}
 	}
 
 
@@ -48,5 +60,11 @@ public class MovementManager : MonoBehaviour
 
 		return hitPosition.point;
 
+	}
+
+	private void AddToSelection(GameObject selection, NavMeshAgent agent)
+	{
+		selectedUnits.Add(selection);
+		playerAgents.Add(agent);
 	}
 }

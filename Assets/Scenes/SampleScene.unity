@@ -508,6 +508,8 @@ MonoBehaviour:
   _unitOutlineTagName: unitSelectionOutline
   _resourceSelectionOutline: {fileID: 1221201041178708, guid: 3504248de51ce354ba1880e3a530b2b7,
     type: 2}
+  _resourceDestinationOutline: {fileID: 1221201041178708, guid: ab96aa6fa550d5b4f979aae8cd850804,
+    type: 2}
   _buildingSelectionOutline: {fileID: 1221201041178708, guid: b1d95ed80abff8c45bf86980a8d50e25,
     type: 2}
   _unitSelectionOutline: {fileID: 1221201041178708, guid: be9ee174fbbc83a4e9970a0b4ce84417,
@@ -515,6 +517,7 @@ MonoBehaviour:
   _selectionText: {fileID: 1842754404}
   selectedObjects: []
   resourceCount: {fileID: 0}
+  UnitSelected: 0
 --- !u!4 &1467152570 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4108826435968528, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d,
@@ -768,9 +771,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
-  playerAgent: {fileID: 0}
   _selectionManager: {fileID: 1394867071}
   selectedUnits: []
+  playerAgents: []
 --- !u!1001 &1728066176
 Prefab:
   m_ObjectHideFlags: 0
