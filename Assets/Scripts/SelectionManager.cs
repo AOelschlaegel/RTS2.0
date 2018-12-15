@@ -11,6 +11,7 @@ public class SelectionManager : MonoBehaviour
 	[SerializeField] private string _outlineTagName;
 	[SerializeField] private string _unitOutlineTagName;
 	[SerializeField] private GameObject _resourceSelectionOutline;
+	[SerializeField] private GameObject _resourceDestinationOutline;
 	[SerializeField] private GameObject _buildingSelectionOutline;
 	[SerializeField] private GameObject _unitSelectionOutline;
 
@@ -118,7 +119,7 @@ public class SelectionManager : MonoBehaviour
 
 	IEnumerator SelectionBlinking(Transform resource)
 	{
-		var outline = Instantiate(_resourceSelectionOutline, resource.transform.position, Quaternion.identity);
+		var outline = Instantiate(_resourceDestinationOutline, resource.transform.position, Quaternion.identity);
 
 		if (outline != null)
 		{
