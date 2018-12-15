@@ -25,18 +25,22 @@ public class MovementManager : MonoBehaviour
 	{
 		if (_selectionManager.selectedObjects.Count != 0)
 		{
-			if (_selectionManager.selectedObjects.Count != selectedUnits.Count && _selectionManager.UnitSelected == true)
+			if (_selectionManager.UnitSelected == true)
 			{
-				var selection = _selectionManager.selectedObjects[0].gameObject;
-				var agent = selection.GetComponent<NavMeshAgent>();
-				AddToSelection(selection, agent);
-			}
 
-			if (Input.GetMouseButton(1))
-			{
-				foreach (NavMeshAgent agent in playerAgents)
+				if (_selectionManager.selectedObjects.Count != selectedUnits.Count)
 				{
-					agent.SetDestination(GetPointUnderCursor());
+					var selection = _selectionManager.selectedObjects[0].gameObject;
+					var agent = selection.GetComponent<NavMeshAgent>();
+					AddToSelection(selection, agent);
+				}
+
+				if (Input.GetMouseButton(1))
+				{
+					foreach (NavMeshAgent agent in playerAgents)
+					{
+						agent.SetDestination(GetPointUnderCursor());
+					}
 				}
 			}
 		}

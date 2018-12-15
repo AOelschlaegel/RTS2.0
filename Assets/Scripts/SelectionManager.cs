@@ -69,35 +69,25 @@ public class SelectionManager : MonoBehaviour
 			{
 				Destroy(GameObject.FindGameObjectWithTag(_outlineTagName));
 				Destroy(GameObject.FindGameObjectWithTag(_unitOutlineTagName));
+				selectedObjects.Clear();
+				selectedObjects.Add(hit.transform.gameObject);
 
 				if (hit.transform.CompareTag(_resourceColliderTagName))
 				{
-					selectedObjects.Clear();
-					selectedObjects.Add(hit.transform.gameObject);
-					var instance = Instantiate(_resourceSelectionOutline, hit.transform.position, Quaternion.identity);
-					var ui = GameObject.Find("UI");
-					instance.transform.parent = ui.transform;
+					SelectionOutline(_resourceSelectionOutline, hit.transform);
 					resourceCount = hit.transform.gameObject.GetComponent<ResourceCount>();
 					UnitSelected = false;
 				}
 
 				else if (hit.transform.CompareTag(_buildingColliderTagName))
 				{
-					selectedObjects.Clear();
-					selectedObjects.Add(hit.transform.gameObject);
-					var instance = Instantiate(_buildingSelectionOutline, hit.transform.position, Quaternion.identity);
-					var ui = GameObject.Find("UI");
-					instance.transform.parent = ui.transform;
+					SelectionOutline(_buildingSelectionOutline, hit.transform);
 					UnitSelected = false;
 				}
 
 				else if (hit.transform.CompareTag(_unitColliderTagName))
 				{
-					selectedObjects.Clear();
-					selectedObjects.Add(hit.transform.gameObject);
-					var instance = Instantiate(_unitSelectionOutline, hit.transform.position, Quaternion.identity);
-					var ui = GameObject.Find("UI");
-					instance.transform.parent = ui.transform;
+					SelectionOutline(_unitSelectionOutline, hit.transform);
 					UnitSelected = true;
 				}
 				else
@@ -127,6 +117,13 @@ public class SelectionManager : MonoBehaviour
 		// If we let go of the left mouse button, end selection
 		if (Input.GetMouseButtonUp(0))
 			isSelecting = false;
+	}
+
+	void SelectionOutline(GameObject outline, Transform position)
+	{
+		var instance = Instantiate(outline, position.position, Quaternion.identity);
+		var ui = GameObject.Find("UI");
+		instance.transform.parent = ui.transform;
 	}
 
 	IEnumerator SelectionBlinking(Transform resource)
