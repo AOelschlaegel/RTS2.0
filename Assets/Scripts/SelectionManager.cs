@@ -33,7 +33,7 @@ public class SelectionManager : MonoBehaviour
 	}
 
 	public void Update()
-	{
+	{ 
 		if (selectedObjects.Count != 0)
 		{
 			if (selectedObjects.Count == 1)

@@ -23,32 +23,27 @@ public class MovementManager : MonoBehaviour
 
 	private void Update()
 	{
-		if (_selectionManager.selectedObjects.Count != 0)
+		selectedUnits = _selectionManager.selectedObjects;
+
+		if (_selectionManager.UnitSelected == true)
 		{
-			if (_selectionManager.UnitSelected == true)
-			{
-
-				if (_selectionManager.selectedObjects.Count != selectedUnits.Count)
-				{
-					var selection = _selectionManager.selectedObjects[0].gameObject;
-					var agent = selection.GetComponent<NavMeshAgent>();
-					AddToSelection(selection, agent);
-				}
-
-				if (Input.GetMouseButton(1))
-				{
-					foreach (NavMeshAgent agent in playerAgents)
-					{
-						agent.SetDestination(GetPointUnderCursor());
-					}
-				}
-			}
+			if (playerAgents.Count != selectedUnits.Count)
+				playerAgents.Add(selectedUnits[0].GetComponent<NavMeshAgent>());
 		}
-
-		else
+		if (playerAgents.Count != 0 && selectedUnits.Count != 0)
 		{
-			selectedUnits.Clear();
-			playerAgents.Clear();
+			if (playerAgents[0].gameObject != selectedUnits[0].gameObject)
+			{
+				playerAgents.Clear();
+			}
+		} else playerAgents.Clear();
+
+		if (Input.GetMouseButton(1))
+		{
+			foreach (NavMeshAgent agent in playerAgents)
+			{
+				agent.SetDestination(GetPointUnderCursor());
+			}
 		}
 	}
 
@@ -63,12 +58,5 @@ public class MovementManager : MonoBehaviour
 		Physics.Raycast(ray, out hitPosition, 100, groundLayer);
 
 		return hitPosition.point;
-
-	}
-
-	private void AddToSelection(GameObject selection, NavMeshAgent agent)
-	{
-		selectedUnits.Add(selection);
-		playerAgents.Add(agent);
 	}
 }
