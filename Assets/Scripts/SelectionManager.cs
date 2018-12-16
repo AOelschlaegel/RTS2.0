@@ -79,6 +79,7 @@ public class SelectionManager : MonoBehaviour
 					SelectionOutline(_resourceSelectionOutline, hit.transform);
 					resourceCount = hit.transform.gameObject.GetComponent<ResourceCount>();
 					UnitSelected = false;
+					HideWayPoints();
 				}
 
 				else if (hit.transform.CompareTag(_buildingColliderTagName))
@@ -96,6 +97,7 @@ public class SelectionManager : MonoBehaviour
 				{
 					SelectionOutline(_unitSelectionOutline, hit.transform);
 					UnitSelected = true;
+					HideWayPoints();
 				}
 				else
 				{
@@ -104,12 +106,7 @@ public class SelectionManager : MonoBehaviour
 					_selectionText.text = null;
 					UnitSelected = false;
 					selectedObjects.Clear();
-					var waypoints = GameObject.FindGameObjectsWithTag("waypoint");
-
-					foreach (GameObject waypoint in waypoints)
-					{
-						waypoint.GetComponent<Renderer>().enabled = false;
-					}
+					HideWayPoints();
 				}
 			}
 
@@ -151,6 +148,15 @@ public class SelectionManager : MonoBehaviour
 		var instance = Instantiate(outline, position.position, Quaternion.identity);
 		var ui = GameObject.Find("UI");
 		instance.transform.parent = ui.transform;
+	}
+
+	void HideWayPoints()
+	{
+		var waypoints = GameObject.FindGameObjectsWithTag("waypoint");
+		foreach (GameObject waypoint in waypoints)
+		{
+			waypoint.GetComponent<Renderer>().enabled = false;
+		}
 	}
 
 	IEnumerator SelectionBlinking(Transform resource)
