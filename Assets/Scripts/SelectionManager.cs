@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class SelectionManager : MonoBehaviour
@@ -14,6 +15,8 @@ public class SelectionManager : MonoBehaviour
 	[SerializeField] private GameObject _resourceDestinationOutline;
 	[SerializeField] private GameObject _buildingSelectionOutline;
 	[SerializeField] private GameObject _unitSelectionOutline;
+
+	[SerializeField] private Button _spawnCitizen;
 
 	[SerializeField] private GameObject _wayPoint;
 
@@ -32,10 +35,11 @@ public class SelectionManager : MonoBehaviour
 		_selectionText.text = null;
 		selectedObjects = new List<GameObject>();
 		UnitSelected = false;
+		_spawnCitizen.gameObject.SetActive(false);
 	}
 
 	public void Update()
-	{ 
+	{
 		if (selectedObjects.Count != 0)
 		{
 			if (selectedObjects.Count == 1)
@@ -60,14 +64,14 @@ public class SelectionManager : MonoBehaviour
 				if (selectedObjects[0].tag == _unitColliderTagName)
 					unitSelection.transform.position = selectedObjects[0].transform.position;
 			}
-		} 
+		}
 		else _selectionText.text = null;
 
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 		if (Physics.Raycast(ray, out hit))
 		{
-			if (Input.GetMouseButtonDown(0))
+			if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject() == true)
 			{
 				Destroy(GameObject.FindGameObjectWithTag(_outlineTagName));
 				Destroy(GameObject.FindGameObjectWithTag(_unitOutlineTagName));
@@ -86,6 +90,7 @@ public class SelectionManager : MonoBehaviour
 				{
 					SelectionOutline(_buildingSelectionOutline, hit.transform);
 					UnitSelected = false;
+					_spawnCitizen.gameObject.SetActive(true);
 					if (hit.transform.childCount > 0)
 					{
 						var waypoint = hit.transform.GetChild(0);
@@ -99,6 +104,7 @@ public class SelectionManager : MonoBehaviour
 					UnitSelected = true;
 					HideWayPoints();
 				}
+
 				else
 				{
 					Destroy(GameObject.FindGameObjectWithTag(_unitOutlineTagName));
@@ -107,6 +113,7 @@ public class SelectionManager : MonoBehaviour
 					UnitSelected = false;
 					selectedObjects.Clear();
 					HideWayPoints();
+					_spawnCitizen.gameObject.SetActive(false);
 				}
 			}
 
@@ -122,13 +129,24 @@ public class SelectionManager : MonoBehaviour
 					if (selectedObjects[0].transform.childCount > 0)
 					{
 						var oldPoint = selectedObjects[0].transform.GetChild(0).gameObject;
-						Debug.Log("destroy waypoint");
+						
 						Destroy(oldPoint);
 					}
-
-					var point = Instantiate(_wayPoint, hit.transform.position, Quaternion.identity);
-					point.transform.parent = selectedObjects[0].transform;
+					var resourcepoint = Instantiate(_wayPoint, hit.transform.position, Quaternion.identity);
+					resourcepoint.transform.parent = selectedObjects[0].transform;
 					StartCoroutine(SelectionBlinking(hit.transform));
+				}
+
+				if(hit.transform.CompareTag("ground"))
+				{
+					if(selectedObjects[0].transform.childCount > 0)
+					{
+						var oldPoint = selectedObjects[0].transform.GetChild(0).gameObject;
+						Destroy(oldPoint);
+					}
+					Debug.Log("destroy waypoint");
+					var point = Instantiate(_wayPoint, hit.point, Quaternion.identity);
+					point.transform.parent = selectedObjects[0].transform;
 				}
 			}
 		}
