@@ -15,6 +15,7 @@ TagManager:
   - unit
   - ground
   - unitSelectionOutline
+  - waypoint
   layers:
   - Default
   - TransparentFX

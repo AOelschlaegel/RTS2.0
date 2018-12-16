@@ -15,6 +15,8 @@ public class SelectionManager : MonoBehaviour
 	[SerializeField] private GameObject _buildingSelectionOutline;
 	[SerializeField] private GameObject _unitSelectionOutline;
 
+	[SerializeField] private GameObject _wayPoint;
+
 	[SerializeField] private Text _selectionText;
 
 	public List<GameObject> selectedObjects;
@@ -83,6 +85,11 @@ public class SelectionManager : MonoBehaviour
 				{
 					SelectionOutline(_buildingSelectionOutline, hit.transform);
 					UnitSelected = false;
+					if (hit.transform.childCount > 0)
+					{
+						var waypoint = hit.transform.GetChild(0);
+						waypoint.GetComponent<Renderer>().enabled = true;
+					}
 				}
 
 				else if (hit.transform.CompareTag(_unitColliderTagName))
@@ -97,6 +104,12 @@ public class SelectionManager : MonoBehaviour
 					_selectionText.text = null;
 					UnitSelected = false;
 					selectedObjects.Clear();
+					var waypoints = GameObject.FindGameObjectsWithTag("waypoint");
+
+					foreach (GameObject waypoint in waypoints)
+					{
+						waypoint.GetComponent<Renderer>().enabled = false;
+					}
 				}
 			}
 
@@ -104,6 +117,20 @@ public class SelectionManager : MonoBehaviour
 			{
 				if (hit.transform.CompareTag(_resourceColliderTagName) && selectedObjects[0].tag == _unitColliderTagName)
 				{
+					StartCoroutine(SelectionBlinking(hit.transform));
+				}
+
+				if (hit.transform.CompareTag(_resourceColliderTagName) && selectedObjects[0].tag == _buildingColliderTagName)
+				{
+					if (selectedObjects[0].transform.childCount > 0)
+					{
+						var oldPoint = selectedObjects[0].transform.GetChild(0).gameObject;
+						Debug.Log("destroy waypoint");
+						Destroy(oldPoint);
+					}
+
+					var point = Instantiate(_wayPoint, hit.transform.position, Quaternion.identity);
+					point.transform.parent = selectedObjects[0].transform;
 					StartCoroutine(SelectionBlinking(hit.transform));
 				}
 			}
