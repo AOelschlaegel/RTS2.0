@@ -522,9 +522,26 @@ Prefab:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1925238120930058, guid: 6086d2b3dff7b354fb77e2228cab867f, type: 2}
-      propertyPath: m_Layer
-      value: 10
+      propertyPath: m_Name
+      value: TownCenter
       objectReference: {fileID: 0}
+    - target: {fileID: 114026519124153620, guid: 6086d2b3dff7b354fb77e2228cab867f,
+        type: 2}
+      propertyPath: _selectionManager
+      value: 
+      objectReference: {fileID: 1394867071}
+    - target: {fileID: 114026519124153620, guid: 6086d2b3dff7b354fb77e2228cab867f,
+        type: 2}
+      propertyPath: _wayPoint
+      value: 
+      objectReference: {fileID: 1848681960033896, guid: 80c99f2121dc64e46ad1514f1b622b6b,
+        type: 2}
+    - target: {fileID: 114026519124153620, guid: 6086d2b3dff7b354fb77e2228cab867f,
+        type: 2}
+      propertyPath: _wayPointPrefab
+      value: 
+      objectReference: {fileID: 1848681960033896, guid: 80c99f2121dc64e46ad1514f1b622b6b,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6086d2b3dff7b354fb77e2228cab867f, type: 2}
   m_IsPrefabAsset: 0
@@ -717,7 +734,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1507676052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.017388, y: 11.026421, z: -3.7570183}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 249150090}
@@ -1096,15 +1113,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 459968, guid: 407bd5cbe8c43334bb1b25c0f3826974, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -9.017388
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 459968, guid: 407bd5cbe8c43334bb1b25c0f3826974, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -4.2764206
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 459968, guid: 407bd5cbe8c43334bb1b25c0f3826974, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 3.7570183
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 459968, guid: 407bd5cbe8c43334bb1b25c0f3826974, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1161,6 +1178,10 @@ Prefab:
     - target: {fileID: 459968, guid: 407bd5cbe8c43334bb1b25c0f3826974, type: 2}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11455738, guid: 407bd5cbe8c43334bb1b25c0f3826974, type: 2}
+      propertyPath: limitMap
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 407bd5cbe8c43334bb1b25c0f3826974, type: 2}

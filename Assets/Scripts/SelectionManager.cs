@@ -74,6 +74,7 @@ public class SelectionManager : MonoBehaviour
 							SelectedType = null;
 							SelectedObject = null;
 							SelectedObjects.Clear();
+							DestroyAllSelectors();
 							break;
 
 						case 12: //Units
@@ -98,7 +99,10 @@ public class SelectionManager : MonoBehaviour
 		{
 			SelectionText.text = SelectedObject;
 		}
-		else SelectionText.text = null;
+		else
+		{
+			SelectionText.text = null;
+		}
 
 		//Check if anything is in List
 		if (SelectedObjects.Count != 0)
@@ -112,11 +116,7 @@ public class SelectionManager : MonoBehaviour
 				Selector.transform.position = SelectedObjects[0].transform.position;
 			}
 		}
-		else
-		{
-			// Search for all selectionOutlines and destroy them
-			DestroyAllSelectors();
-		}
+
 	}
 
 	void DrawSelectionOutline(GameObject outline, Transform hit)
@@ -125,7 +125,6 @@ public class SelectionManager : MonoBehaviour
 		var ui = GameObject.Find("UI");
 		Selector = Instantiate(outline, hit.transform.position, Quaternion.identity);
 		Selector.transform.parent = ui.transform;
-
 	}
 	
 	void DestroyAllSelectors()
