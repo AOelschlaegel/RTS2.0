@@ -685,12 +685,11 @@ MonoBehaviour:
     type: 2}
   _unitSelectionOutline: {fileID: 1221201041178708, guid: be9ee174fbbc83a4e9970a0b4ce84417,
     type: 2}
-  _wayPoint: {fileID: 1848681960033896, guid: 80c99f2121dc64e46ad1514f1b622b6b, type: 2}
-  _selectionText: {fileID: 1842754404}
-  selectedObjects: []
+  Selector: {fileID: 0}
+  SelectedObjects: []
+  SelectionText: {fileID: 1842754404}
   SelectedType: 
   SelectedObject: 
-  UnitSelected: 0
 --- !u!4 &1467152570 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4108826435968528, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d,
@@ -951,7 +950,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2048
   _selectionManager: {fileID: 1394867071}
   selectedUnits: []
   playerAgents: []

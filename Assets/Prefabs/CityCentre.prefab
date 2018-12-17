@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33246595039977638}
   - component: {fileID: 23590012519212586}
   - component: {fileID: 65883802436083750}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CityCentre
   m_TagString: building
   m_Icon: {fileID: 0}
