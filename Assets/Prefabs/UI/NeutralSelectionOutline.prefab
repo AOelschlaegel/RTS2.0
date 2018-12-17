@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 33785956433230156}
   - component: {fileID: 23809571001471998}
   m_Layer: 0
-  m_Name: ResourceSelectionOutline
-  m_TagString: selectionOutline
+  m_Name: NeutralSelectionOutline
+  m_TagString: selector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

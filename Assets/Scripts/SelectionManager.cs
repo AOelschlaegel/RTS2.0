@@ -5,153 +5,139 @@ using UnityEngine.UI;
 
 public class SelectionManager : MonoBehaviour
 {
-	[SerializeField] private string _resourceColliderTagName;
-	[SerializeField] private string _buildingColliderTagName;
-	[SerializeField] private string _unitColliderTagName;
-	[SerializeField] private string _outlineTagName;
-	[SerializeField] private string _unitOutlineTagName;
-	[SerializeField] private GameObject _resourceSelectionOutline;
+	#region Serialization
+	[Header("Setup")]
+	[SerializeField] private GameObject _neutralSelectionOutline;
 	[SerializeField] private GameObject _resourceDestinationOutline;
 	[SerializeField] private GameObject _buildingSelectionOutline;
 	[SerializeField] private GameObject _unitSelectionOutline;
 
-	[SerializeField] private GameObject _wayPoint;
+	[Header("Info")]
+	public GameObject Selector;
+	public List<GameObject> SelectedObjects;
+	public Text SelectionText;
+	public string SelectedType;
+	public string SelectedObject;
 
-	[SerializeField] private Text _selectionText;
+	private ResourceCount _resourceCount;
+	#endregion
 
-	public List<GameObject> selectedObjects;
-	public ResourceCount resourceCount;
-
-	public bool UnitSelected;
-
-	bool isSelecting = false;
-	Vector3 mousePosition1;
-
+	#region UnityEvents
 	public void Start()
 	{
-		_selectionText.text = null;
-		selectedObjects = new List<GameObject>();
-		UnitSelected = false;
+		SelectionText.text = null;
+		SelectedObjects = new List<GameObject>();
 	}
 
 	public void Update()
-	{ 
-		if (selectedObjects.Count != 0)
-		{
-			if (selectedObjects.Count == 1)
-			{
-				_selectionText.text = selectedObjects[0].name;
+	{
+		Checks();
+		Inputs();
+	}
 
-				if (resourceCount != null && selectedObjects[0].tag != _unitColliderTagName && selectedObjects[0].tag != _buildingColliderTagName)
-				{
-					_selectionText.text = selectedObjects[0].name + ": " + resourceCount.Resources;
-				}
-			}
+	#endregion
 
-			if (selectedObjects.Count > 1)
-			{
-				_selectionText.text = "GroupSelection";
-			}
+	#region CustomEvents
 
-			if (GameObject.FindGameObjectWithTag("unitSelectionOutline") != null)
-			{
-				var unitSelection = GameObject.FindGameObjectWithTag("unitSelectionOutline");
-
-				if (selectedObjects[0].tag == _unitColliderTagName)
-					unitSelection.transform.position = selectedObjects[0].transform.position;
-			}
-		} 
-		else _selectionText.text = null;
-
+	void Inputs()
+	{
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
+
+		//Start Raycast
 		if (Physics.Raycast(ray, out hit))
 		{
+			//Reference hit object
+			var hitGameobject = hit.transform.gameObject;
+
+			//Check if LeftMouseButton was pressed
 			if (Input.GetMouseButtonDown(0))
 			{
-				Destroy(GameObject.FindGameObjectWithTag(_outlineTagName));
-				Destroy(GameObject.FindGameObjectWithTag(_unitOutlineTagName));
-				selectedObjects.Clear();
-				selectedObjects.Add(hit.transform.gameObject);
-
-				if (hit.transform.CompareTag(_resourceColliderTagName))
+				//Check if list already contains hit Object
+				if (!SelectedObjects.Contains(hitGameobject))
 				{
-					SelectionOutline(_resourceSelectionOutline, hit.transform);
-					resourceCount = hit.transform.gameObject.GetComponent<ResourceCount>();
-					UnitSelected = false;
-				}
+					//Clear selection
+					SelectedObjects.Clear();
 
-				else if (hit.transform.CompareTag(_buildingColliderTagName))
-				{
-					SelectionOutline(_buildingSelectionOutline, hit.transform);
-					UnitSelected = false;
-					if (hit.transform.childCount > 0)
+					//Add hitObject to selectionList
+					SelectedObjects.Add(hitGameobject);
+
+					//Cycle through possible Layers
+					switch (hitGameobject.layer)
 					{
-						var waypoint = hit.transform.GetChild(0);
-						waypoint.GetComponent<Renderer>().enabled = true;
-					}
-				}
+						case 10: //Buildings
+							SelectedType = "Building";
+							DrawSelectionOutline(_buildingSelectionOutline, hit.transform);
+							break;
 
-				else if (hit.transform.CompareTag(_unitColliderTagName))
-				{
-					SelectionOutline(_unitSelectionOutline, hit.transform);
-					UnitSelected = true;
-				}
-				else
-				{
-					Destroy(GameObject.FindGameObjectWithTag(_unitOutlineTagName));
-					Destroy(GameObject.FindGameObjectWithTag(_outlineTagName));
-					_selectionText.text = null;
-					UnitSelected = false;
-					selectedObjects.Clear();
-					var waypoints = GameObject.FindGameObjectsWithTag("waypoint");
+						case 11: //Ground
+							SelectedType = null;
+							SelectedObject = null;
+							SelectedObjects.Clear();
+							break;
 
-					foreach (GameObject waypoint in waypoints)
-					{
-						waypoint.GetComponent<Renderer>().enabled = false;
+						case 12: //Units
+							SelectedType = "Unit";
+							DrawSelectionOutline(_unitSelectionOutline, hit.transform);
+							break;
+
+						case 13: //Neutral (resources etc.)
+							SelectedType = "Neutral";
+							DrawSelectionOutline(_neutralSelectionOutline, hit.transform);
+							break;
 					}
 				}
 			}
-
-			if (Input.GetMouseButtonDown(1))
-			{
-				if (hit.transform.CompareTag(_resourceColliderTagName) && selectedObjects[0].tag == _unitColliderTagName)
-				{
-					StartCoroutine(SelectionBlinking(hit.transform));
-				}
-
-				if (hit.transform.CompareTag(_resourceColliderTagName) && selectedObjects[0].tag == _buildingColliderTagName)
-				{
-					if (selectedObjects[0].transform.childCount > 0)
-					{
-						var oldPoint = selectedObjects[0].transform.GetChild(0).gameObject;
-						Debug.Log("destroy waypoint");
-						Destroy(oldPoint);
-					}
-
-					var point = Instantiate(_wayPoint, hit.transform.position, Quaternion.identity);
-					point.transform.parent = selectedObjects[0].transform;
-					StartCoroutine(SelectionBlinking(hit.transform));
-				}
-			}
 		}
-		// If we press the left mouse button, save mouse location and begin selection
-		if (Input.GetMouseButtonDown(0))
-		{
-			isSelecting = true;
-			mousePosition1 = Input.mousePosition;
-		}
-		// If we let go of the left mouse button, end selection
-		if (Input.GetMouseButtonUp(0))
-			isSelecting = false;
 	}
 
-	void SelectionOutline(GameObject outline, Transform position)
+	void Checks()
 	{
-		var instance = Instantiate(outline, position.position, Quaternion.identity);
-		var ui = GameObject.Find("UI");
-		instance.transform.parent = ui.transform;
+		//Check if object is selected
+		if (SelectedObject != null)
+		{
+			SelectionText.text = SelectedObject;
+		}
+		else SelectionText.text = null;
+
+		//Check if anything is in List
+		if (SelectedObjects.Count != 0)
+		{
+			SelectedObject = SelectedObjects[0].name;
+
+			//Check if selectionOutline exists
+			if (Selector != null)
+			{
+				//Make outline follow selection
+				Selector.transform.position = SelectedObjects[0].transform.position;
+			}
+		}
+		else
+		{
+			// Search for all selectionOutlines and destroy them
+			DestroyAllSelectors();
+		}
 	}
+
+	void DrawSelectionOutline(GameObject outline, Transform hit)
+	{
+		DestroyAllSelectors();
+		var ui = GameObject.Find("UI");
+		Selector = Instantiate(outline, hit.transform.position, Quaternion.identity);
+		Selector.transform.parent = ui.transform;
+
+	}
+	
+	void DestroyAllSelectors()
+	{
+		var selectors = GameObject.FindGameObjectsWithTag("selector");
+		foreach (GameObject selector in selectors)
+		{
+			Destroy(selector);
+		}
+	}
+
+	#endregion
 
 	IEnumerator SelectionBlinking(Transform resource)
 	{

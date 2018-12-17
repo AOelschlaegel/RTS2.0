@@ -304,7 +304,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 729968219}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MapPrototype
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,6 +374,14 @@ Prefab:
       propertyPath: m_Name
       value: Pumpkins
       objectReference: {fileID: 0}
+    - target: {fileID: 1811523335206892, guid: d79cfb5b8c5b93e49a85a5a66a9d097d, type: 2}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794433593437504, guid: d79cfb5b8c5b93e49a85a5a66a9d097d, type: 2}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d79cfb5b8c5b93e49a85a5a66a9d097d, type: 2}
   m_IsPrefabAsset: 0
@@ -394,7 +402,7 @@ GameObject:
   - component: {fileID: 905829150}
   - component: {fileID: 905829149}
   - component: {fileID: 905829151}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: NotWalkabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -513,6 +521,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1925238120930058, guid: 6086d2b3dff7b354fb77e2228cab867f, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6086d2b3dff7b354fb77e2228cab867f, type: 2}
   m_IsPrefabAsset: 0
@@ -524,7 +536,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1147734945}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Resources
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -556,7 +568,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1245987554}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MapPrototype
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -622,10 +634,6 @@ Prefab:
       propertyPath: _resourceManager
       value: 
       objectReference: {fileID: 492474195}
-    - target: {fileID: 4988889526340188, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.17
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 2}
   m_IsPrefabAsset: 0
@@ -669,12 +677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4ea1cc093c0a14478ff3084f3d8a581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resourceColliderTagName: resource
-  _buildingColliderTagName: building
-  _unitColliderTagName: unit
-  _outlineTagName: selectionOutline
-  _unitOutlineTagName: unitSelectionOutline
-  _resourceSelectionOutline: {fileID: 1221201041178708, guid: 3504248de51ce354ba1880e3a530b2b7,
+  _neutralSelectionOutline: {fileID: 1221201041178708, guid: 3504248de51ce354ba1880e3a530b2b7,
     type: 2}
   _resourceDestinationOutline: {fileID: 1221201041178708, guid: ab96aa6fa550d5b4f979aae8cd850804,
     type: 2}
@@ -685,7 +688,8 @@ MonoBehaviour:
   _wayPoint: {fileID: 1848681960033896, guid: 80c99f2121dc64e46ad1514f1b622b6b, type: 2}
   _selectionText: {fileID: 1842754404}
   selectedObjects: []
-  resourceCount: {fileID: 0}
+  SelectedType: 
+  SelectedObject: 
   UnitSelected: 0
 --- !u!4 &1467152570 stripped
 Transform:
@@ -767,6 +771,14 @@ Prefab:
     - target: {fileID: 1811523335206892, guid: d79cfb5b8c5b93e49a85a5a66a9d097d, type: 2}
       propertyPath: m_Name
       value: Pumpkins
+      objectReference: {fileID: 0}
+    - target: {fileID: 1811523335206892, guid: d79cfb5b8c5b93e49a85a5a66a9d097d, type: 2}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794433593437504, guid: d79cfb5b8c5b93e49a85a5a66a9d097d, type: 2}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d79cfb5b8c5b93e49a85a5a66a9d097d, type: 2}
@@ -997,7 +1009,7 @@ GameObject:
   - component: {fileID: 1753288113}
   - component: {fileID: 1753288112}
   - component: {fileID: 1753288114}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: PlayArea
   m_TagString: ground
   m_Icon: {fileID: 0}

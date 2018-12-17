@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4697388526481164}
   - component: {fileID: 33285912344219440}
   - component: {fileID: 23584669604171468}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Pumpkins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 65247992830257788}
   - component: {fileID: 54537206156383136}
   - component: {fileID: 114972964326425692}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Pumpkins
   m_TagString: resource
   m_Icon: {fileID: 0}
