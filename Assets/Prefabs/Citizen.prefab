@@ -3650,7 +3650,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b38cb69da4b95245847379f0b6894c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resourceManager: {fileID: 0}
   resource: 
   IsCollectingFood: 0
   _resourceTag: resource

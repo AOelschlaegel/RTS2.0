@@ -111,3 +111,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f89ebac4b9694a479a05de8e4ebd2d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _selectionManager: {fileID: 0}
+  _wayPointPrefab: {fileID: 1848681960033896, guid: 80c99f2121dc64e46ad1514f1b622b6b,
+    type: 2}
+  _resourceManager: {fileID: 0}
+  _citizen: {fileID: 1264928970512764, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 2}
+  SelectedObject: {fileID: 0}
+  Selected: 0
+  HasWaypoint: 0

@@ -1,9 +1,13 @@
 using UnityEngine;
+using UnityEngine.AI;
+
 public class TownCenterBehaviour : MonoBehaviour
 {
 	#region Initialization
-	[SerializeField] private SelectionManager _selectionManager;
+	private SelectionManager _selectionManager;
 	[SerializeField] private GameObject _wayPointPrefab;
+	private ResourceManager _resourceManager;
+	[SerializeField] private GameObject _citizen;
 
 	private GameObject _wayPoint;
 	private GameObject _hitGameobject;
@@ -20,12 +24,16 @@ public class TownCenterBehaviour : MonoBehaviour
 	{
 		HasWaypoint = false;
 		Selected = false;
+
+		_selectionManager = GameObject.Find("GameManager").GetComponent<SelectionManager>();
+		_resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
 	}
 
 	private void Update()
 	{
 		Checks();
 		Inputs();
+
 	}
 
 	#endregion
@@ -76,6 +84,14 @@ public class TownCenterBehaviour : MonoBehaviour
 
 		if (Selected == true)
 		{
+			if (_resourceManager.food >= 30)
+			{
+				if(Input.GetKeyDown(KeyCode.F))
+				{
+					CreateCitizen();
+					_resourceManager.food -= 30;
+				}
+			}
 			//Start Raycast
 			if (Physics.Raycast(ray, out hit))
 			{
@@ -103,6 +119,22 @@ public class TownCenterBehaviour : MonoBehaviour
 	{
 		_wayPoint = Instantiate(_wayPointPrefab, _hitGameobject.transform.position, Quaternion.identity);
 		_wayPoint.transform.parent = this.transform;
+	}
+
+	private void CreateCitizen()
+	{
+		if (HasWaypoint)
+		{
+			var waypoint = this.transform.GetChild(0).gameObject;
+			var citizen = Instantiate(_citizen, transform.position, Quaternion.identity);
+			var agent = citizen.GetComponent<NavMeshAgent>();
+			agent.SetDestination(waypoint.transform.position);
+		}
+
+		else
+		{
+			Instantiate(_citizen, transform.position, Quaternion.identity);
+		}
 	}
 
 	#endregion

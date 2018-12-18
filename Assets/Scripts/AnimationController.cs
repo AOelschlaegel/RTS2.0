@@ -6,7 +6,7 @@ public class AnimationController : MonoBehaviour
 	private Vector3 _oldPos;
 	private Vector3 _newPos;
 
-	public ResourceManager _resourceManager;
+	private ResourceManager _resourceManager;
 
 	public string resource;
 	public bool IsCollectingFood;
@@ -21,6 +21,7 @@ public class AnimationController : MonoBehaviour
 	private void Start()
 	{
 		_animator = GetComponent<Animator>();
+		_resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
 	}
 
 	private void Update()
