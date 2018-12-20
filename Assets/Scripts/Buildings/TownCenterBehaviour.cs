@@ -16,6 +16,8 @@ public class TownCenterBehaviour : MonoBehaviour
 	public bool Selected;
 	public bool HasWaypoint;
 
+    private Vector3 _hitPos;
+
 	#endregion
 
 	#region UnityEvents
@@ -92,49 +94,74 @@ public class TownCenterBehaviour : MonoBehaviour
 					_resourceManager.food -= 30;
 				}
 			}
-			//Start Raycast
-			if (Physics.Raycast(ray, out hit))
-			{
-				//Reference hit object
-				_hitGameobject = hit.transform.gameObject;
+            //Start Raycast
+            if (Physics.Raycast(ray, out hit))
+            {
+                //Reference hit object
 
-				//Check if RightMouseButton was pressed
-				if (Input.GetMouseButtonDown(1))
-				{
-					// Check if it already has a waypoint
-					if (HasWaypoint)
-					{
-						// Destroy waypoint
-						var waypoint = this.transform.GetChild(0).gameObject;
-						Destroy(waypoint);
-					}
+                _hitGameobject = hit.transform.gameObject;
 
-					CreateWaypoint();
-				}
+                if (Input.GetMouseButtonDown(1))
+                {
+                        // Check 
+
+                        switch (_hitGameobject.layer)
+                        {
+                            // Buildings
+                            case 10:
+                                _hitPos = _hitGameobject.transform.position;
+                                CreateWaypoint(_hitPos);
+                                break;
+
+                            // Ground
+                            case 11:
+                                _hitPos = hit.point;
+                                CreateWaypoint(_hitPos);
+                                break;
+
+                            //Units
+                            case 12:
+
+                                break;
+
+                        case 13:
+                            _hitPos = _hitGameobject.transform.position;
+                            CreateWaypoint(_hitPos);
+
+                            break;
+                                }
+                                
+                                }
+
 			}
 		}
 	}
 
-	private void CreateWaypoint()
+	private void CreateWaypoint(Vector3 position)
 	{
-		_wayPoint = Instantiate(_wayPointPrefab, _hitGameobject.transform.position, Quaternion.identity);
+        if(HasWaypoint)
+        {
+            var waypoint = this.transform.GetChild(0).gameObject;
+            Destroy(waypoint);
+        }
+
+        _wayPoint = Instantiate(_wayPointPrefab, position, Quaternion.identity);
 		_wayPoint.transform.parent = this.transform;
 	}
 
 	private void CreateCitizen()
 	{
-		if (HasWaypoint)
-		{
-			var waypoint = this.transform.GetChild(0).gameObject;
-			var citizen = Instantiate(_citizen, transform.position, Quaternion.identity);
-			var agent = citizen.GetComponent<NavMeshAgent>();
-			agent.SetDestination(waypoint.transform.position);
-		}
-
-		else
-		{
-			Instantiate(_citizen, transform.position, Quaternion.identity);
-		}
+        if (HasWaypoint)
+        {
+            var waypoint = this.transform.GetChild(0).gameObject;
+            var citizen = Instantiate(_citizen, transform.position, Quaternion.identity);
+            var agent = citizen.GetComponent<NavMeshAgent>();
+            agent.SetDestination(waypoint.transform.position);
+        }
+        else
+        {
+            Instantiate(_citizen, transform.position, Quaternion.identity);
+        }
 	}
 
 	#endregion
