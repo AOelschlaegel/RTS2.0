@@ -598,6 +598,11 @@ Prefab:
       propertyPath: m_Name
       value: TownCenter
       objectReference: {fileID: 0}
+    - target: {fileID: 114026519124153620, guid: 6086d2b3dff7b354fb77e2228cab867f,
+        type: 2}
+      propertyPath: _citizenSpawnDuration
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6086d2b3dff7b354fb77e2228cab867f, type: 2}
   m_IsPrefabAsset: 0
