@@ -16,8 +16,11 @@ public class SelectionManager : MonoBehaviour
 	public GameObject Selector;
 	public List<GameObject> SelectedObjects;
 	public Text SelectionText;
+    public Text BuildQueue;
 	public string SelectedType;
 	public string SelectedObject;
+
+
 
 	private ResourceCount _resourceCount;
 	#endregion
@@ -26,6 +29,7 @@ public class SelectionManager : MonoBehaviour
 	public void Start()
 	{
 		SelectionText.text = null;
+        BuildQueue.text = null;
 		SelectedObjects = new List<GameObject>();
 	}
 
@@ -98,19 +102,31 @@ public class SelectionManager : MonoBehaviour
 		if (SelectedObject != null)
 		{
 			SelectionText.text = SelectedObject;
+
 		}
 		else
 		{
 			SelectionText.text = null;
-		}
+            BuildQueue.text = null;
+        }
 
 		//Check if anything is in List
 		if (SelectedObjects.Count != 0)
 		{
 			SelectedObject = SelectedObjects[0].name;
 
-			//Check if selectionOutline exists
-			if (Selector != null)
+            if (SelectedObjects[0].name == "TownCenter")
+            {
+                var towncenter = SelectedObjects[0].GetComponent<TownCenterBehaviour>();
+                if (towncenter.IsCreating == true)
+                {
+                    BuildQueue.text = towncenter._buildTime.ToString();
+                }
+
+            }
+
+            //Check if selectionOutline exists
+            if (Selector != null)
 			{
 				//Make outline follow selection
 				Selector.transform.position = SelectedObjects[0].transform.position;

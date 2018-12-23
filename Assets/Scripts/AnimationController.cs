@@ -22,7 +22,9 @@ public class AnimationController : MonoBehaviour
 	{
 		_animator = GetComponent<Animator>();
 		_resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
-	}
+        ResourceTime = _timePerResource;
+
+    }
 
 	private void Update()
 	{

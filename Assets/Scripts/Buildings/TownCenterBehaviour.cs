@@ -18,11 +18,13 @@ public class TownCenterBehaviour : MonoBehaviour
     [SerializeField] float _citizenSpawnTimer;
 
     public Queue<string> BuildQueue;
-    private float currentBuildProgress = 0.0f;
-    public float maxBuildProgress;
+    public bool IsCreating;
 
     public bool Selected;
     public bool HasWaypoint;
+
+    public float _buildTime;
+    private float _timePerSpawn = 10f;
 
     private Vector3 _hitPos;
 
@@ -37,6 +39,11 @@ public class TownCenterBehaviour : MonoBehaviour
 
         _selectionManager = GameObject.Find("GameManager").GetComponent<SelectionManager>();
         _resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
+
+        BuildQueue = new Queue<string>();
+        _buildTime = _timePerSpawn;
+
+        IsCreating = false;
     }
 
     private void Update()
@@ -44,6 +51,22 @@ public class TownCenterBehaviour : MonoBehaviour
         Checks();
         Inputs();
 
+        if (BuildQueue.Count > 0)
+        {
+            IsCreating = true;
+            _buildTime -= Time.deltaTime;
+            for (int i = 0; i < BuildQueue.Count; i++)
+            {
+                if (_buildTime <= 0)
+                {
+                    CreateCitizen();
+                    BuildQueue.Dequeue();
+                    _buildTime = _timePerSpawn;
+                }
+            }
+        }
+        else
+            IsCreating = false;
     }
 
     #endregion
@@ -98,7 +121,7 @@ public class TownCenterBehaviour : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.F))
                 {
-                    CreateCitizen();
+                    BuildQueue.Enqueue("Citizen");
                     _resourceManager.food -= 30;
                 }
             }
@@ -161,7 +184,6 @@ public class TownCenterBehaviour : MonoBehaviour
     { 
             if (HasWaypoint)
             {
-
                 var waypoint = this.transform.GetChild(0).gameObject;
                 var citizen = Instantiate(_citizen, transform.position, Quaternion.identity);
                 var agent = citizen.GetComponent<NavMeshAgent>();
@@ -174,19 +196,6 @@ public class TownCenterBehaviour : MonoBehaviour
                 _citizenSpawnTimer = _citizenSpawnDuration;
             }
         }
-
-    protected void ProcessBuildQueue()
-    {
-        if (BuildQueue.Count > 0)
-        {
-            currentBuildProgress += Time.deltaTime;
-            if (currentBuildProgress > maxBuildProgress)
-            {
-                if (player) player.AddUnit(BuildQueue.Dequeue(), spawnPoint, transform.rotation);
-                currentBuildProgress = 0.0f;
-            }
-        }
-    }
 }
 
     #endregion
