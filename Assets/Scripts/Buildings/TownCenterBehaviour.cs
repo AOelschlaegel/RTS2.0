@@ -14,9 +14,6 @@ public class TownCenterBehaviour : MonoBehaviour
     private GameObject _hitGameobject;
     public GameObject SelectedObject;
 
-    [SerializeField] private float _citizenSpawnDuration;
-    [SerializeField] float _citizenSpawnTimer;
-
     public Queue<string> BuildQueue;
     public bool IsCreating;
 
@@ -27,6 +24,8 @@ public class TownCenterBehaviour : MonoBehaviour
     private float _timePerSpawn = 10f;
 
     private Vector3 _hitPos;
+
+    public QueueBehaviour QueueTime;
 
     #endregion
 
@@ -39,11 +38,12 @@ public class TownCenterBehaviour : MonoBehaviour
 
         _selectionManager = GameObject.Find("GameManager").GetComponent<SelectionManager>();
         _resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
+        QueueTime = GetComponent<QueueBehaviour>();
 
         BuildQueue = new Queue<string>();
         _buildTime = _timePerSpawn;
 
-        IsCreating = false;
+        QueueTime.IsCreating = false;
     }
 
     private void Update()
@@ -51,9 +51,11 @@ public class TownCenterBehaviour : MonoBehaviour
         Checks();
         Inputs();
 
+        QueueTime.QueueTime = _buildTime;
+
         if (BuildQueue.Count > 0)
         {
-            IsCreating = true;
+            QueueTime.IsCreating = true;
             _buildTime -= Time.deltaTime;
             for (int i = 0; i < BuildQueue.Count; i++)
             {
@@ -66,7 +68,7 @@ public class TownCenterBehaviour : MonoBehaviour
             }
         }
         else
-            IsCreating = false;
+            QueueTime.IsCreating = false;
     }
 
     #endregion
@@ -163,7 +165,6 @@ public class TownCenterBehaviour : MonoBehaviour
                     }
 
                  }
-
             }
         }
     }
@@ -188,12 +189,10 @@ public class TownCenterBehaviour : MonoBehaviour
                 var citizen = Instantiate(_citizen, transform.position, Quaternion.identity);
                 var agent = citizen.GetComponent<NavMeshAgent>();
                 agent.SetDestination(waypoint.transform.position);
-                _citizenSpawnTimer = _citizenSpawnDuration;
             }
             else
             {
                 Instantiate(_citizen, transform.position, Quaternion.identity);
-                _citizenSpawnTimer = _citizenSpawnDuration;
             }
         }
 }

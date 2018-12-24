@@ -106,6 +106,7 @@ public class SelectionManager : MonoBehaviour
 		}
 		else
 		{
+            // Reset SelectionText and Queue if nothing is selected
 			SelectionText.text = null;
             BuildQueue.text = null;
         }
@@ -115,14 +116,14 @@ public class SelectionManager : MonoBehaviour
 		{
 			SelectedObject = SelectedObjects[0].name;
 
-            if (SelectedObjects[0].name == "TownCenter")
+            if (SelectedObjects[0].tag == "building")
             {
-                var towncenter = SelectedObjects[0].GetComponent<TownCenterBehaviour>();
-                if (towncenter.IsCreating == true)
+                // Get Queue if a building is selected
+                var queue = SelectedObjects[0].GetComponent<QueueBehaviour>();
+                if (queue.IsCreating == true)
                 {
-                    BuildQueue.text = towncenter._buildTime.ToString();
+                    BuildQueue.text = queue.QueueTime.ToString();
                 }
-
             }
 
             //Check if selectionOutline exists
@@ -132,7 +133,6 @@ public class SelectionManager : MonoBehaviour
 				Selector.transform.position = SelectedObjects[0].transform.position;
 			}
 		}
-
 	}
 
 	void DrawSelectionOutline(GameObject outline, Transform hit)
