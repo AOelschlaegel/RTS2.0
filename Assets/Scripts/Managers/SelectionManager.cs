@@ -11,11 +11,11 @@ public class SelectionManager : MonoBehaviour
 	[SerializeField] private GameObject _resourceDestinationOutline;
 	[SerializeField] private GameObject _buildingSelectionOutline;
 	[SerializeField] private GameObject _unitSelectionOutline;
+	public Text SelectionText;
 
 	[Header("Info")]
 	public GameObject Selector;
 	public List<GameObject> SelectedObjects;
-	public Text SelectionText;
 	public string SelectedType;
 	public string SelectedObject;
 
@@ -126,7 +126,7 @@ public class SelectionManager : MonoBehaviour
 		Selector = Instantiate(outline, hit.transform.position, Quaternion.identity);
 		Selector.transform.parent = ui.transform;
 	}
-	
+
 	void DestroyAllSelectors()
 	{
 		var selectors = GameObject.FindGameObjectsWithTag("selector");

@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4472589014681146}
-  - component: {fileID: 114884690670942888}
+  - component: {fileID: 114284769777021454}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -40,7 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114884690670942888
+--- !u!114 &114284769777021454
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1969779145218860}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4ea1cc093c0a14478ff3084f3d8a581, type: 3}
+  m_Script: {fileID: 11500000, guid: cbfd2ea58c3d8b647acaa9ef17797244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _neutralSelectionOutline: {fileID: 1221201041178708, guid: 3504248de51ce354ba1880e3a530b2b7,
@@ -59,8 +59,8 @@ MonoBehaviour:
     type: 2}
   _unitSelectionOutline: {fileID: 1221201041178708, guid: be9ee174fbbc83a4e9970a0b4ce84417,
     type: 2}
+  SelectionText: {fileID: 0}
   Selector: {fileID: 0}
   SelectedObjects: []
-  SelectionText: {fileID: 0}
   SelectedType: 
   SelectedObject: 
