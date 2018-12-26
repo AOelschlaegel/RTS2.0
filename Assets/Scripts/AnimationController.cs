@@ -16,6 +16,7 @@ public class AnimationController : MonoBehaviour
 
 	public NeutralDataContainer neutralDataContainer;
 	private UnitDataContainer _unitDataContainer;
+	private FractionBuildingContainer _fractionBuildingContainer;
 
 	private void Start()
 	{
@@ -23,6 +24,7 @@ public class AnimationController : MonoBehaviour
 		_resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
         ResourceTime = _timePerResource;
 		_unitDataContainer = GetComponent<UnitDataContainer>();
+		_fractionBuildingContainer = GameObject.Find("BuildingContainer").GetComponent<FractionBuildingContainer>();
 
 
 	}
@@ -39,6 +41,10 @@ public class AnimationController : MonoBehaviour
 		} else _animator.SetBool("isWalking", false);
 
 		_oldPos = transform.position;
+
+		if(_unitDataContainer.Resources >= 15) {
+
+		}
 	}
 
 	public void OnTriggerEnter(Collider other)
@@ -83,6 +89,27 @@ public class AnimationController : MonoBehaviour
 				ResourceTime = _timePerResource;
 				neutralDataContainer.Resources--;
 				_unitDataContainer.Resources++;
+			}
+		}
+	}
+
+	void FindNearestTownCenter()
+	{
+		var townCenters = _fractionBuildingContainer.TownCenters;
+
+		GameObject closest = null;
+		float distance = Mathf.Infinity;
+		Vector3 position = transform.position;
+
+		foreach(GameObject townCenter in townCenters)
+		{
+			Vector3 diff = townCenter.transform.position - position;
+			float curDistance = diff.sqrMagnitude;
+
+			if(curDistance < distance)
+			{
+				closest = townCenter;
+				distance = curDistance;
 			}
 		}
 	}
