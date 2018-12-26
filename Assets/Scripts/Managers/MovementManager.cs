@@ -23,9 +23,9 @@ public class MovementManager : MonoBehaviour
 
 	private void Update()
 	{
-		selectedUnits = _selectionManager.selectedObjects;
+		selectedUnits = _selectionManager.SelectedObjects;
 
-		if (_selectionManager.UnitSelected == true)
+		if (_selectionManager.SelectedType == "Unit")
 		{
 			if (playerAgents.Count != selectedUnits.Count)
 				playerAgents.Add(selectedUnits[0].GetComponent<NavMeshAgent>());

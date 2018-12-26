@@ -22,7 +22,8 @@ GameObject:
   - component: {fileID: 33246595039977638}
   - component: {fileID: 23590012519212586}
   - component: {fileID: 65883802436083750}
-  m_Layer: 0
+  - component: {fileID: 114026519124153620}
+  m_Layer: 10
   m_Name: CityCentre
   m_TagString: building
   m_Icon: {fileID: 0}
@@ -99,3 +100,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 3, z: 3.9999998}
   m_Center: {x: 0, y: 1.5, z: 0.00000011920929}
+--- !u!114 &114026519124153620
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1925238120930058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f89ebac4b9694a479a05de8e4ebd2d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectionManager: {fileID: 0}
+  _wayPointPrefab: {fileID: 1848681960033896, guid: 80c99f2121dc64e46ad1514f1b622b6b,
+    type: 2}
+  _resourceManager: {fileID: 0}
+  _citizen: {fileID: 1264928970512764, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 2}
+  SelectedObject: {fileID: 0}
+  Selected: 0
+  HasWaypoint: 0
