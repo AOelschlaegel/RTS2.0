@@ -11,13 +11,16 @@ public class SelectionManager : MonoBehaviour
 	[SerializeField] private GameObject _resourceDestinationOutline;
 	[SerializeField] private GameObject _buildingSelectionOutline;
 	[SerializeField] private GameObject _unitSelectionOutline;
-	public Text SelectionText;
 
 	[Header("Info")]
 	public GameObject Selector;
 	public List<GameObject> SelectedObjects;
+	public Text SelectionText;
+    public Text BuildQueue;
 	public string SelectedType;
 	public string SelectedObject;
+
+
 
 	private ResourceCount _resourceCount;
 	#endregion
@@ -26,6 +29,7 @@ public class SelectionManager : MonoBehaviour
 	public void Start()
 	{
 		SelectionText.text = null;
+        BuildQueue.text = null;
 		SelectedObjects = new List<GameObject>();
 	}
 
@@ -98,25 +102,37 @@ public class SelectionManager : MonoBehaviour
 		if (SelectedObject != null)
 		{
 			SelectionText.text = SelectedObject;
+
 		}
 		else
 		{
+            // Reset SelectionText and Queue if nothing is selected
 			SelectionText.text = null;
-		}
+            BuildQueue.text = null;
+        }
 
 		//Check if anything is in List
 		if (SelectedObjects.Count != 0)
 		{
 			SelectedObject = SelectedObjects[0].name;
 
-			//Check if selectionOutline exists
-			if (Selector != null)
+            if (SelectedObjects[0].tag == "building")
+            {
+                // Get Queue if a building is selected
+                var queue = SelectedObjects[0].GetComponent<QueueBehaviour>();
+                if (queue.IsCreating == true)
+                {
+                    BuildQueue.text = queue.QueueTime.ToString();
+                }
+            }
+
+            //Check if selectionOutline exists
+            if (Selector != null)
 			{
 				//Make outline follow selection
 				Selector.transform.position = SelectedObjects[0].transform.position;
 			}
 		}
-
 	}
 
 	void DrawSelectionOutline(GameObject outline, Transform hit)
@@ -126,7 +142,7 @@ public class SelectionManager : MonoBehaviour
 		Selector = Instantiate(outline, hit.transform.position, Quaternion.identity);
 		Selector.transform.parent = ui.transform;
 	}
-
+	
 	void DestroyAllSelectors()
 	{
 		var selectors = GameObject.FindGameObjectsWithTag("selector");
