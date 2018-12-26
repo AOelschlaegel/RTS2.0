@@ -16,20 +16,18 @@ public class SelectionManager : MonoBehaviour
 	public GameObject Selector;
 	public List<GameObject> SelectedObjects;
 	public Text SelectionText;
-    public Text BuildQueue;
+    public Text VariableInfo;
 	public string SelectedType;
 	public string SelectedObject;
 
-
-
-	private ResourceCount _resourceCount;
+	private NeutralDataContainer _resourceCount;
 	#endregion
 
 	#region UnityEvents
 	public void Start()
 	{
 		SelectionText.text = null;
-        BuildQueue.text = null;
+        VariableInfo.text = null;
 		SelectedObjects = new List<GameObject>();
 	}
 
@@ -108,7 +106,7 @@ public class SelectionManager : MonoBehaviour
 		{
             // Reset SelectionText and Queue if nothing is selected
 			SelectionText.text = null;
-            BuildQueue.text = null;
+            VariableInfo.text = null;
         }
 
 		//Check if anything is in List
@@ -116,15 +114,44 @@ public class SelectionManager : MonoBehaviour
 		{
 			SelectedObject = SelectedObjects[0].name;
 
-            if (SelectedObjects[0].tag == "building")
-            {
-                // Get Queue if a building is selected
-                var queue = SelectedObjects[0].GetComponent<QueueBehaviour>();
-                if (queue.IsCreating == true)
-                {
-                    BuildQueue.text = queue.QueueTime.ToString();
-                }
-            }
+			switch (SelectedObjects.Count)
+			{
+				// Single Selection
+				case 1:
+					// If Building
+					if (SelectedObjects[0].tag == "building")
+					{
+						// Get Queue if a building is selected
+						var building = SelectedObjects[0].GetComponent<BuildingDataContainer>();
+						if (building.IsCreating == true)
+						{
+							VariableInfo.text = building.QueueTime.ToString();
+						}
+					}
+
+					// If Unit
+					if (SelectedObjects[0].tag == "unit")
+					{
+						// Get Queue if a building is selected
+						var unit = SelectedObjects[0].GetComponent<UnitDataContainer>();
+						VariableInfo.text = unit.Resources.ToString();
+					}
+
+					// If neutral
+					if (SelectedObjects[0].tag == "neutral")
+					{
+						// Get Queue if a building is selected
+						var neutral = SelectedObjects[0].GetComponent<NeutralDataContainer>();
+						VariableInfo.text = neutral.Resources.ToString();
+					}
+
+					break;
+
+				case 0:
+					break;
+			}
+
+
 
             //Check if selectionOutline exists
             if (Selector != null)

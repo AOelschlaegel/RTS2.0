@@ -7,7 +7,7 @@ public class MovementManager : MonoBehaviour
 {
 	public LayerMask groundLayer;
 
-	public SelectionManager _selectionManager;
+	private SelectionManager _selectionManager;
 
 	public List<GameObject> selectedUnits;
 
@@ -19,6 +19,7 @@ public class MovementManager : MonoBehaviour
 	{
 		selectedUnits = new List<GameObject>();
 		playerAgents = new List<NavMeshAgent>();
+		_selectionManager = GameObject.Find("SelectionManager").GetComponent<SelectionManager>();
 	}
 
 	private void Update()

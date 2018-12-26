@@ -1,7 +1,7 @@
 using UnityEngine;
-public class ResourceCount : MonoBehaviour
+public class NeutralDataContainer : MonoBehaviour
 {
-	public int Resources;
+	public int Resources = 1000;
 
 	private void Update()
 	{

@@ -25,7 +25,7 @@ public class TownCenterBehaviour : MonoBehaviour
 
     private Vector3 _hitPos;
 
-    public QueueBehaviour QueueTime;
+    public BuildingDataContainer Container;
 
     #endregion
 
@@ -36,14 +36,14 @@ public class TownCenterBehaviour : MonoBehaviour
         HasWaypoint = false;
         Selected = false;
 
-        _selectionManager = GameObject.Find("GameManager").GetComponent<SelectionManager>();
+        _selectionManager = GameObject.Find("SelectionManager").GetComponent<SelectionManager>();
         _resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
-        QueueTime = GetComponent<QueueBehaviour>();
+		Container = GetComponent<BuildingDataContainer>();
 
         BuildQueue = new Queue<string>();
         _buildTime = _timePerSpawn;
 
-        QueueTime.IsCreating = false;
+		Container.IsCreating = false;
     }
 
     private void Update()
@@ -51,11 +51,11 @@ public class TownCenterBehaviour : MonoBehaviour
         Checks();
         Inputs();
 
-        QueueTime.QueueTime = _buildTime;
+		Container.QueueTime = _buildTime;
 
         if (BuildQueue.Count > 0)
         {
-            QueueTime.IsCreating = true;
+			Container.IsCreating = true;
             _buildTime -= Time.deltaTime;
             for (int i = 0; i < BuildQueue.Count; i++)
             {
@@ -68,7 +68,7 @@ public class TownCenterBehaviour : MonoBehaviour
             }
         }
         else
-            QueueTime.IsCreating = false;
+			Container.IsCreating = false;
     }
 
     #endregion

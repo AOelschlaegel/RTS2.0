@@ -11,6 +11,8 @@ TagManager:
   - ground
   - selector
   - destinator
+  - waypoint
+  - neutral
   layers:
   - Default
   - TransparentFX

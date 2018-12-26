@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 114972964326425692}
   m_Layer: 13
   m_Name: Pumpkins
-  m_TagString: resource
+  m_TagString: neutral
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -428,7 +428,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1811523335206892}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.447389, y: -10.97642, z: 6.887018}
+  m_LocalPosition: {x: -20.607388, y: -10.97642, z: 2.7270184}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4188394046676508}
@@ -646,4 +646,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd01fdbd48c625f46b3bc8bc64492f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Resources: 2000
+  Resources: 1000

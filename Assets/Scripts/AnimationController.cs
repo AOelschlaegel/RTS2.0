@@ -11,20 +11,21 @@ public class AnimationController : MonoBehaviour
 	public string resource;
 	public bool IsCollectingFood;
 
-	[SerializeField] private string _resourceTag;
-
 	public float ResourceTime;
 	private float _timePerResource = 5f;
 
-	public ResourceCount CurrentResource;
+	public NeutralDataContainer neutralDataContainer;
+	private UnitDataContainer _unitDataContainer;
 
 	private void Start()
 	{
 		_animator = GetComponent<Animator>();
 		_resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
         ResourceTime = _timePerResource;
+		_unitDataContainer = GetComponent<UnitDataContainer>();
 
-    }
+
+	}
 
 	private void Update()
 	{
@@ -42,13 +43,13 @@ public class AnimationController : MonoBehaviour
 
 	public void OnTriggerEnter(Collider other)
 	{
-		if(other.tag == _resourceTag)
+		if(other.tag == "neutral")
 		{
 			if (other.name == "Pumpkins")
 			{
-				CurrentResource = other.gameObject.GetComponent<ResourceCount>();
+				neutralDataContainer = other.gameObject.GetComponent<NeutralDataContainer>();
 
-				if (CurrentResource.Resources > 0)
+				if (neutralDataContainer.Resources > 0)
 				{
 					resource = "food";
 					IsCollectingFood = true;
@@ -61,12 +62,12 @@ public class AnimationController : MonoBehaviour
 
 	void OnTriggerExit(Collider other)
 	{
-		if (other.tag == _resourceTag)
+		if (other.tag == "neutral")
 		{
 			_animator.SetBool("isGathering", false);
 			resource = null;
 			IsCollectingFood = false;
-			CurrentResource = null;
+			neutralDataContainer = null;
 		}
 	}
 
@@ -80,7 +81,8 @@ public class AnimationController : MonoBehaviour
 			{
 				_resourceManager.food++;
 				ResourceTime = _timePerResource;
-				CurrentResource.Resources--;
+				neutralDataContainer.Resources--;
+				_unitDataContainer.Resources++;
 			}
 		}
 	}
