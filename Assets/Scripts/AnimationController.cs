@@ -25,8 +25,6 @@ public class AnimationController : MonoBehaviour
         ResourceTime = _timePerResource;
 		_unitDataContainer = GetComponent<UnitDataContainer>();
 		_fractionBuildingContainer = GameObject.Find("BuildingContainer").GetComponent<FractionBuildingContainer>();
-
-
 	}
 
 	private void Update()
