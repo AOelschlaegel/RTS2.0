@@ -56,6 +56,7 @@ public class TownCenterBehaviour : MonoBehaviour
         if (BuildQueue.Count > 0)
         {
 			Container.IsCreating = true;
+			Container.queue = BuildQueue;
             _buildTime -= Time.deltaTime;
             for (int i = 0; i < BuildQueue.Count; i++)
             {

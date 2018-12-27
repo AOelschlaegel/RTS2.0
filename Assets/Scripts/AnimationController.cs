@@ -40,7 +40,8 @@ public class AnimationController : MonoBehaviour
 
 		_oldPos = transform.position;
 
-		if(_unitDataContainer.Resources >= 15) {
+		if(_unitDataContainer.Resources >= 15)
+		{
 
 		}
 	}

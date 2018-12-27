@@ -17,6 +17,7 @@ public class SelectionManager : MonoBehaviour
 	public List<GameObject> SelectedObjects;
 	public Text SelectionText;
     public Text VariableInfo;
+	public Text Queue;
 	public string SelectedType;
 	public string SelectedObject;
 
@@ -28,6 +29,7 @@ public class SelectionManager : MonoBehaviour
 	{
 		SelectionText.text = null;
         VariableInfo.text = null;
+		Queue.text = null;
 		SelectedObjects = new List<GameObject>();
 	}
 
@@ -107,6 +109,7 @@ public class SelectionManager : MonoBehaviour
             // Reset SelectionText and Queue if nothing is selected
 			SelectionText.text = null;
             VariableInfo.text = null;
+			Queue.text = null;
         }
 
 		//Check if anything is in List
@@ -119,18 +122,19 @@ public class SelectionManager : MonoBehaviour
 				// Single Selection
 				case 1:
 					// If Building
-					if (SelectedObjects[0].tag == "building")
+					if (SelectedType == "Building")
 					{
 						// Get Queue if a building is selected
 						var building = SelectedObjects[0].GetComponent<BuildingDataContainer>();
 						if (building.IsCreating == true)
 						{
 							VariableInfo.text = building.QueueTime.ToString();
+							Queue.text = building.queue.Count.ToString();
 						}
 					}
 
 					// If Unit
-					if (SelectedObjects[0].tag == "unit")
+					if (SelectedType == "Unit")
 					{
 						// Get Queue if a building is selected
 						var unit = SelectedObjects[0].GetComponent<UnitDataContainer>();
@@ -138,7 +142,7 @@ public class SelectionManager : MonoBehaviour
 					}
 
 					// If neutral
-					if (SelectedObjects[0].tag == "neutral")
+					if (SelectedType == "Neutral")
 					{
 						// Get Queue if a building is selected
 						var neutral = SelectedObjects[0].GetComponent<NeutralDataContainer>();
@@ -165,7 +169,7 @@ public class SelectionManager : MonoBehaviour
 	void DrawSelectionOutline(GameObject outline, Transform hit)
 	{
 		DestroyAllSelectors();
-		var ui = GameObject.Find("UI");
+		var ui = GameObject.Find("DebugCanvas");
 		Selector = Instantiate(outline, hit.transform.position, Quaternion.identity);
 		Selector.transform.parent = ui.transform;
 	}
@@ -184,7 +188,7 @@ public class SelectionManager : MonoBehaviour
 	IEnumerator SelectionBlinking(Transform resource)
 	{
 		var outline = Instantiate(_resourceDestinationOutline, resource.transform.position, Quaternion.identity);
-		var ui = GameObject.Find("UI");
+		var ui = GameObject.Find("DebugCanvas");
 		outline.transform.parent = ui.transform;
 
 		if (outline != null)
