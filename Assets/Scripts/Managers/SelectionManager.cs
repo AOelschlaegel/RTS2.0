@@ -7,7 +7,8 @@ public class SelectionManager : MonoBehaviour
 {
 	#region Serialization
 	[Header("Setup")]
-	[SerializeField] private GameObject _neutralSelectionOutline;
+	[SerializeField] private GameObject _neutralSelectionOutlineBig;
+	[SerializeField] private GameObject _neutralSelectionOutlineSmall;
 	[SerializeField] private GameObject _resourceDestinationOutline;
 	[SerializeField] private GameObject _buildingSelectionOutline;
 	[SerializeField] private GameObject _unitSelectionOutline;
@@ -88,7 +89,12 @@ public class SelectionManager : MonoBehaviour
 
 						case 13: //Neutral (resources etc.)
 							SelectedType = "Neutral";
-							DrawSelectionOutline(_neutralSelectionOutline, hit.transform);
+							if(hitGameobject.name == "Tree")
+							{
+								DrawSelectionOutline(_neutralSelectionOutlineSmall, hit.transform);
+							}
+							else
+							DrawSelectionOutline(_neutralSelectionOutlineBig, hit.transform);
 							break;
 					}
 				}
@@ -131,8 +137,8 @@ public class SelectionManager : MonoBehaviour
 							VariableInfo.text = building.QueueTime.ToString();
 							Queue.text = building.queue.Count.ToString();
 						}
+						else VariableInfo.text = null;
 					}
-
 					// If Unit
 					if (SelectedType == "Unit")
 					{
@@ -152,6 +158,7 @@ public class SelectionManager : MonoBehaviour
 					break;
 
 				case 0:
+
 					break;
 			}
 

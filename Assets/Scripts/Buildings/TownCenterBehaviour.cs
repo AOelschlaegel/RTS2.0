@@ -44,6 +44,10 @@ public class TownCenterBehaviour : MonoBehaviour
         _buildTime = _timePerSpawn;
 
 		Container.IsCreating = false;
+
+		
+
+
     }
 
     private void Update()
@@ -187,13 +191,13 @@ public class TownCenterBehaviour : MonoBehaviour
             if (HasWaypoint)
             {
                 var waypoint = this.transform.GetChild(0).gameObject;
-                var citizen = Instantiate(_citizen, transform.position, Quaternion.identity);
+                var citizen = Instantiate(_citizen, new Vector3(transform.position.x +5, transform.position.y, transform.position.z), Quaternion.identity);
                 var agent = citizen.GetComponent<NavMeshAgent>();
                 agent.SetDestination(waypoint.transform.position);
             }
             else
             {
-                Instantiate(_citizen, transform.position, Quaternion.identity);
+                Instantiate(_citizen, new Vector3(transform.position.x + 5, transform.position.y, transform.position.z), Quaternion.identity);
             }
         }
 }

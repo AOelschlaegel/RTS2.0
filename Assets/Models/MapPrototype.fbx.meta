@@ -1568,9 +1568,10 @@ ModelImporter:
     401560: Trees_02
     401562: Trees_03
     2100000: No Name
-    2100002: GrassDark
-    2100004: Cliffs
-    2100006: Grass
+    2100002: Soil
+    2100004: GrassDark
+    2100006: Cliffs
+    2100008: Grass
     2300000: NotWalkabel
     2300002: PlayArea
     2300004: Tree_01
@@ -3950,7 +3951,7 @@ ModelImporter:
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
-    blendShapeNormalImportMode: 0
+    blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0

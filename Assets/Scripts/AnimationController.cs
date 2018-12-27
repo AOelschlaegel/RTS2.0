@@ -10,6 +10,7 @@ public class AnimationController : MonoBehaviour
 
 	public string resource;
 	public bool IsCollectingFood;
+	public bool IsCollectingWood;
 
 	public float ResourceTime;
 	private float _timePerResource = 5f;
@@ -62,6 +63,19 @@ public class AnimationController : MonoBehaviour
 					transform.LookAt(other.transform);
 				}
 			}
+
+			if (other.name == "Tree")
+			{
+				neutralDataContainer = other.gameObject.GetComponent<NeutralDataContainer>();
+
+				if (neutralDataContainer.Resources > 0)
+				{
+					resource = "wood";
+					IsCollectingWood = true;
+					_animator.SetBool("isGathering", true);
+					transform.LookAt(other.transform);
+				}
+			}
 		}
 	}
 
@@ -72,6 +86,7 @@ public class AnimationController : MonoBehaviour
 			_animator.SetBool("isGathering", false);
 			resource = null;
 			IsCollectingFood = false;
+			IsCollectingWood = false;
 			neutralDataContainer = null;
 		}
 	}
@@ -85,6 +100,17 @@ public class AnimationController : MonoBehaviour
 			if (ResourceTime <= 0)
 			{
 				_resourceManager.food++;
+				ResourceTime = _timePerResource;
+				neutralDataContainer.Resources--;
+				_unitDataContainer.Resources++;
+			}
+		}
+
+		if (IsCollectingWood)
+		{
+			if (ResourceTime <= 0)
+			{
+				_resourceManager.wood++;
 				ResourceTime = _timePerResource;
 				neutralDataContainer.Resources--;
 				_unitDataContainer.Resources++;
