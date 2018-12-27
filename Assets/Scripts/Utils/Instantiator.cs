@@ -32,6 +32,7 @@ public class Instantiator : MonoBehaviour
 		foreach(Transform tree in _trees01ProxyRoot)
 		{
 			var instance = Instantiate(tree01, tree.position, Quaternion.identity);
+			instance.name = "Tree";
 			instance.transform.eulerAngles = new Vector3(0, Random.Range(0, 360), 0);
 			instance.transform.parent = _trees01InstanceRoot;
 		}

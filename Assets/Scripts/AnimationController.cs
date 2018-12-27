@@ -59,7 +59,7 @@ public class AnimationController : MonoBehaviour
 				{
 					resource = "food";
 					IsCollectingFood = true;
-					_animator.SetBool("isGathering", true);
+					_animator.SetBool("isGatheringFood", true);
 					transform.LookAt(other.transform);
 				}
 			}
@@ -72,7 +72,7 @@ public class AnimationController : MonoBehaviour
 				{
 					resource = "wood";
 					IsCollectingWood = true;
-					_animator.SetBool("isGathering", true);
+					_animator.SetBool("isCuttingWood", true);
 					transform.LookAt(other.transform);
 				}
 			}
@@ -83,7 +83,7 @@ public class AnimationController : MonoBehaviour
 	{
 		if (other.tag == "neutral")
 		{
-			_animator.SetBool("isGathering", false);
+			_animator.SetBool("isGatheringFood", false);
 			resource = null;
 			IsCollectingFood = false;
 			IsCollectingWood = false;
