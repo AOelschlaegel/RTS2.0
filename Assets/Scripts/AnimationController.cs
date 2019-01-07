@@ -84,6 +84,7 @@ public class AnimationController : MonoBehaviour
 		if (other.tag == "neutral")
 		{
 			_animator.SetBool("isGatheringFood", false);
+			_animator.SetBool("isCuttingWood", false);
 			resource = null;
 			IsCollectingFood = false;
 			IsCollectingWood = false;
