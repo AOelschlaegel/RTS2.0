@@ -1,0 +1,215 @@
+fileFormatVersion: 2
+guid: 92bc81102e9e99e44a3269b6b60db3f2
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Bones
+    100002: Bones_1
+    100004: Bones_2
+    100006: Bones_3
+    100008: Bones_4
+    100010: Bones_5
+    100012: Bones_6
+    100014: Bones_7
+    100016: Bones_7_2
+    100018: Bones_8
+    100020: Ground
+    100022: Polygon_Reduction
+    100024: Polygon_Reduction_1
+    100026: Polygon_Reduction_2
+    100028: Polygon_Reduction_3
+    100030: Polygon_Reduction_4
+    100032: Polygon_Reduction_5
+    100034: Polygon_Reduction_6
+    100036: //RootNode
+    100038: Tube
+    400000: Bones
+    400002: Bones_1
+    400004: Bones_2
+    400006: Bones_3
+    400008: Bones_4
+    400010: Bones_5
+    400012: Bones_6
+    400014: Bones_7
+    400016: Bones_7_2
+    400018: Bones_8
+    400020: Ground
+    400022: Polygon_Reduction
+    400024: Polygon_Reduction_1
+    400026: Polygon_Reduction_2
+    400028: Polygon_Reduction_3
+    400030: Polygon_Reduction_4
+    400032: Polygon_Reduction_5
+    400034: Polygon_Reduction_6
+    400036: //RootNode
+    400038: Tube
+    2100000: Ancient_Bricks
+    2100002: Stone
+    2100004: Ancient_BoneStructure
+    2100006: FractionColor
+    2100008: Dirt
+    2300000: Bones
+    2300002: Bones_1
+    2300004: Bones_2
+    2300006: Bones_3
+    2300008: Bones_4
+    2300010: Bones_5
+    2300012: Bones_6
+    2300014: Bones_7
+    2300016: Bones_7_2
+    2300018: Bones_8
+    2300020: Ground
+    2300022: Polygon_Reduction
+    2300024: Polygon_Reduction_1
+    2300026: Polygon_Reduction_2
+    2300028: Polygon_Reduction_3
+    2300030: Polygon_Reduction_4
+    2300032: Polygon_Reduction_5
+    2300034: Tube
+    3300000: Bones
+    3300002: Bones_1
+    3300004: Bones_2
+    3300006: Bones_3
+    3300008: Bones_4
+    3300010: Bones_5
+    3300012: Bones_6
+    3300014: Bones_7
+    3300016: Bones_7_2
+    3300018: Bones_8
+    3300020: Ground
+    3300022: Polygon_Reduction
+    3300024: Polygon_Reduction_1
+    3300026: Polygon_Reduction_2
+    3300028: Polygon_Reduction_3
+    3300030: Polygon_Reduction_4
+    3300032: Polygon_Reduction_5
+    3300034: Tube
+    4300000: Tube
+    4300002: Polygon_Reduction_5
+    4300004: Polygon_Reduction_4
+    4300006: Polygon_Reduction_3
+    4300008: Polygon_Reduction_2
+    4300010: Polygon_Reduction
+    4300012: Polygon_Reduction_1
+    4300014: Bones_7
+    4300016: Bones_8
+    4300018: Bones_7_2
+    4300020: Bones_6
+    4300022: Bones_5
+    4300024: Bones_4
+    4300026: Bones_3
+    4300028: Bones_2
+    4300030: Bones_1
+    4300032: Bones
+    4300034: Ground
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ancient_BoneStructure
+    second: {fileID: 2100000, guid: 14d57525feece004ab8221d922fdd03e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ancient_Bricks
+    second: {fileID: 2100000, guid: 382fe78554f18554da8369567d03d78f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dirt
+    second: {fileID: 2100000, guid: 5fecfaad3fb076142b8ff0c906599ba3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FractionColor
+    second: {fileID: 2100000, guid: 8283124f50961af409f7efc07c81d677, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stone
+    second: {fileID: 2100000, guid: c04c83b8d654699479dece9524ce0f09, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 2
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 180
+    normalImportMode: 1
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -108,7 +108,6 @@ public class SelectionManager : MonoBehaviour
 		if (SelectedObject != null)
 		{
 			SelectionText.text = SelectedObject;
-
 		}
 		else
 		{

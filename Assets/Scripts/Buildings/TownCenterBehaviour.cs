@@ -7,7 +7,9 @@ public class TownCenterBehaviour : MonoBehaviour
     #region Initialization
     private SelectionManager _selectionManager;
     [SerializeField] private GameObject _wayPointPrefab;
-    private ResourceManager _resourceManager;
+	[SerializeField] private GameObject _dynamicObjectsRoot;
+	[SerializeField] private GameObject _spawnPoint;
+	private ResourceManager _resourceManager;
     [SerializeField] private GameObject _citizen;
 
     private GameObject _wayPoint;
@@ -47,10 +49,6 @@ public class TownCenterBehaviour : MonoBehaviour
         _buildTime = _timePerSpawn;
 
 		Container.IsCreating = false;
-
-		
-
-
     }
 
     private void Update()
@@ -190,17 +188,16 @@ public class TownCenterBehaviour : MonoBehaviour
     }
 
     private void CreateCitizen()
-    { 
-            if (HasWaypoint)
+    {
+		var citizen = Instantiate(_citizen, _spawnPoint.transform.position, new Quaternion(0, 200, 0, 0));
+
+		if (HasWaypoint)
             {
                 var waypoint = _wayPointRoot.transform.GetChild(0).gameObject;
-                var citizen = Instantiate(_citizen, new Vector3(transform.position.x +5, transform.position.y, transform.position.z), Quaternion.identity);
+				citizen.transform.parent = _dynamicObjectsRoot.transform;
+				citizen.name = "Citizen";
                 var agent = citizen.GetComponent<NavMeshAgent>();
                 agent.SetDestination(waypoint.transform.position);
-            }
-            else
-            {
-                Instantiate(_citizen, new Vector3(transform.position.x + 5, transform.position.y, transform.position.z), Quaternion.identity);
             }
         }
 }

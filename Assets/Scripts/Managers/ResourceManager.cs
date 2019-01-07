@@ -13,13 +13,13 @@ public class ResourceManager : MonoBehaviour
 	{
 		if (food != 0)
 		{
-			foodText.text = "FOOD: " + food.ToString();
+			foodText.text = "Food: " + food.ToString();
 		}
 		else foodText.text = null;
 
 		if (wood != 0)
 		{
-			woodText.text = "WOOD: " + wood.ToString();
+			woodText.text = "Wood: " + wood.ToString();
 		}
 		else woodText.text = null;
 	}
