@@ -11,6 +11,7 @@ public class TownCenterBehaviour : MonoBehaviour
     [SerializeField] private GameObject _citizen;
 
     private GameObject _wayPoint;
+	[SerializeField] GameObject _wayPointRoot;
     private GameObject _hitGameobject;
     public GameObject SelectedObject;
 
@@ -26,6 +27,8 @@ public class TownCenterBehaviour : MonoBehaviour
     private Vector3 _hitPos;
 
     public BuildingDataContainer Container;
+
+	
 
     #endregion
 
@@ -101,7 +104,7 @@ public class TownCenterBehaviour : MonoBehaviour
         }
 
         // Check if waypoint exists
-        if (this.transform.childCount > 0)
+        if (_wayPointRoot.transform.childCount > 0)
         {
             HasWaypoint = true;
         }
@@ -178,19 +181,19 @@ public class TownCenterBehaviour : MonoBehaviour
     {
         if (HasWaypoint)
         {
-            var waypoint = this.transform.GetChild(0).gameObject;
+            var waypoint = _wayPointRoot.transform.GetChild(0).gameObject;
             Destroy(waypoint);
         }
 
         _wayPoint = Instantiate(_wayPointPrefab, position, Quaternion.identity);
-        _wayPoint.transform.parent = this.transform;
+        _wayPoint.transform.parent = _wayPointRoot.transform;
     }
 
     private void CreateCitizen()
     { 
             if (HasWaypoint)
             {
-                var waypoint = this.transform.GetChild(0).gameObject;
+                var waypoint = _wayPointRoot.transform.GetChild(0).gameObject;
                 var citizen = Instantiate(_citizen, new Vector3(transform.position.x +5, transform.position.y, transform.position.z), Quaternion.identity);
                 var agent = citizen.GetComponent<NavMeshAgent>();
                 agent.SetDestination(waypoint.transform.position);

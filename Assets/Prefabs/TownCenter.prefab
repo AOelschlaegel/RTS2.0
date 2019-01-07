@@ -15,8 +15,8 @@ GameObject:
   m_Name: Bones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1116911568736265276
 Transform:
@@ -78,6 +78,36 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &1625100914208052843
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2798594300283431656}
+  m_Layer: 10
+  m_Name: WaypointRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2798594300283431656
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625100914208052843}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4530664598503148925}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2217253185871969656
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,8 +123,8 @@ GameObject:
   m_Name: Fassade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2311782311649223049
 Transform:
@@ -173,8 +203,8 @@ GameObject:
   m_Name: Wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &8843250526388347364
 Transform:
@@ -266,6 +296,7 @@ Transform:
   m_LocalScale: {x: 2.916394, y: 2.916394, z: 2.916394}
   m_Children:
   - {fileID: 1417077066698724152}
+  - {fileID: 2798594300283431656}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -281,8 +312,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f89ebac4b9694a479a05de8e4ebd2d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wayPointPrefab: {fileID: 0}
-  _citizen: {fileID: 0}
+  _wayPointPrefab: {fileID: 1848681960033896, guid: 80c99f2121dc64e46ad1514f1b622b6b,
+    type: 3}
+  _citizen: {fileID: 1264928970512764, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 3}
+  _wayPointRoot: {fileID: 1625100914208052843}
   SelectedObject: {fileID: 0}
   IsCreating: 0
   Selected: 0
@@ -315,8 +348,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.105512, y: 1.7885468, z: 3.0635006}
-  m_Center: {x: -0.031499375, y: 0.6776603, z: 0.021421745}
+  m_Size: {x: 2.8677952, y: 1.3496865, z: 2.825784}
+  m_Center: {x: -0.022356652, y: 0.6410887, z: -0.051721502}
 --- !u!1 &5501854820619653449
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,8 +399,8 @@ GameObject:
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &7155841758591781251
 Transform:
