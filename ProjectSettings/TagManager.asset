@@ -4,15 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - target
-  - resource
   - building
   - unit
   - ground
-  - selector
-  - destinator
-  - waypoint
   - neutral
+  - Friendly
   layers:
   - Default
   - TransparentFX
