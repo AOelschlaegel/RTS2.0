@@ -3891,7 +3891,32 @@ ModelImporter:
     4301540: Tree_03_371
     4301542: PlayArea
     4301544: NotWalkabel
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cliffs
+    second: {fileID: 2100000, guid: 03f05b551d71b476d85c4ae3f6f9adec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grass
+    second: {fileID: 2100000, guid: ef6b7775b08c840afaece93c402947b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GrassDark
+    second: {fileID: 2100000, guid: 90763483021024596bbf6e217f645336, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: de5ce53b86be47b469ff5f2a5faa3ac3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Soil
+    second: {fileID: 2100000, guid: 618e9b26d0ace13429d6c9a1e70a51dd, type: 2}
   materials:
     importMaterials: 1
     materialName: 1
@@ -3947,7 +3972,7 @@ ModelImporter:
     hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 1
-    normalImportMode: 1
+    normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
