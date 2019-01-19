@@ -1880,7 +1880,6 @@ GameObject:
   - component: {fileID: 65597830224086798}
   - component: {fileID: 65991449215205834}
   - component: {fileID: 195835880903108160}
-  - component: {fileID: 114721226855451488}
   - component: {fileID: 114404571028573956}
   - component: {fileID: 6839641827760342421}
   m_Layer: 12
@@ -1898,7 +1897,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264928970512764}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.43, y: -10.968, z: 3.64}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4303682644667686}
@@ -1973,23 +1972,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &114721226855451488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1264928970512764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b38cb69da4b95245847379f0b6894c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resource: 
-  IsCollectingFood: 0
-  IsCollectingWood: 0
-  ResourceTime: 0
-  neutralDataContainer: {fileID: 0}
 --- !u!114 &114404571028573956
 MonoBehaviour:
   m_ObjectHideFlags: 0

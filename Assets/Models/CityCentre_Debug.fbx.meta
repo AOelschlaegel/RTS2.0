@@ -19,7 +19,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: CityCentre
-    second: {fileID: 2100000, guid: 6f22a4f0c36552c418fbd80f0fe515d6, type: 2}
+    second: {fileID: 2100000, guid: 07bb3c95c077e354388f95b9d703fc8e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -29,7 +29,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: No Name
-    second: {fileID: 2100000, guid: 23ba9c1fb337ccb4885a208cd7923736, type: 2}
+    second: {fileID: 2100000, guid: de5ce53b86be47b469ff5f2a5faa3ac3, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -89,8 +89,8 @@ ModelImporter:
     previousCalculatedGlobalScale: 1
     hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
-    normalSmoothAngle: 0
-    normalImportMode: 0
+    normalSmoothAngle: 48
+    normalImportMode: 1
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
