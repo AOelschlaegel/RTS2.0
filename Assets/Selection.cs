@@ -63,7 +63,7 @@ public class Selection : MonoBehaviour
 					{
 						selectableObject.selectionCircle = Instantiate(selectionCirclePrefab);
 						selectableObject.selectionCircle.transform.SetParent(selectableObject.transform, false);
-						selectableObject.selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
+						selectableObject.selectionCircle.transform.eulerAngles = new Vector3(0, 0, 0);
 					}
 				}
 				else
