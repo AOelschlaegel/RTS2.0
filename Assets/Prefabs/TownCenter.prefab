@@ -167,7 +167,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: b7de2ec160296e345926d617bf995207, type: 2}
   - {fileID: 2100000, guid: 382fe78554f18554da8369567d03d78f, type: 2}
-  - {fileID: 2100000, guid: de5ce53b86be47b469ff5f2a5faa3ac3, type: 2}
+  - {fileID: 0}
   - {fileID: 2100000, guid: 5fecfaad3fb076142b8ff0c906599ba3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 8944794442401006030}
   - component: {fileID: 272820097500425313}
   - component: {fileID: 8502663868222816715}
+  - component: {fileID: 3837672481774349158}
   m_Layer: 10
   m_Name: TownCenter
   m_TagString: building
@@ -353,6 +354,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.8677952, y: 1.3496865, z: 2.825784}
   m_Center: {x: -0.022356652, y: 0.6410887, z: -0.051721502}
+--- !u!114 &3837672481774349158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4479557332909391714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be5ff37917fd15e4b8643e1ee1834e34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionCircle: {fileID: 0}
+  SelectionDecalSize: 4
 --- !u!1 &5123747834564251489
 GameObject:
   m_ObjectHideFlags: 0

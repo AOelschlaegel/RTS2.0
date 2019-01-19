@@ -12,6 +12,7 @@ public class Selection : MonoBehaviour
 
 	void Update()
 	{
+
 		// If we press the left mouse button, begin selection and remember the location of the mouse
 		if (Input.GetMouseButtonDown(0))
 		{
@@ -29,6 +30,8 @@ public class Selection : MonoBehaviour
 				}
 			}
 		}
+
+
 
 		// If we let go of the left mouse button, end selection
 		if (Input.GetMouseButtonUp(0))
@@ -64,6 +67,8 @@ public class Selection : MonoBehaviour
 						selectableObject.selectionCircle = Instantiate(selectionCirclePrefab);
 						selectableObject.selectionCircle.transform.SetParent(selectableObject.transform, false);
 						selectableObject.selectionCircle.transform.eulerAngles = new Vector3(0, 0, 0);
+						var size = selectableObject.SelectionDecalSize;
+						selectableObject.selectionCircle.transform.localScale += new Vector3(size, 0.01f, size);
 					}
 				}
 				else
@@ -94,7 +99,7 @@ public class Selection : MonoBehaviour
 		{
 			// Create a rect from both mouse positions
 			var rect = Utils.GetScreenRect(mousePosition1, Input.mousePosition);
-			Utils.DrawScreenRect(rect, new Color(0.8f, 0.8f, 0.95f, 0.25f));
+			Utils.DrawScreenRect(rect, new Color(0.8f, 0.8f, 0.95f, 0.1f));
 			Utils.DrawScreenRectBorder(rect, 2, new Color(0.8f, 0.8f, 0.95f));
 		}
 	}

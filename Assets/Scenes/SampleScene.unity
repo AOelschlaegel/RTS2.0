@@ -57,7 +57,7 @@ LightmapSettings:
     serializedVersion: 10
     m_Resolution: 2
     m_BakeResolution: 4
-    m_AtlasSize: 1024
+    m_AtlasSize: 4096
     m_AO: 1
     m_AOMaxDistance: 1.2
     m_CompAOExponent: 1
@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 112000000, guid: 29537cda34ca65e4f9d3b149cf3c4dbd,
+  m_LightingDataAsset: {fileID: 112000000, guid: 2244c88b5a1251744beadcf4cf28128f,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -19761,7 +19761,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1118bb70eaa620845a4581af31a696dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectionCirclePrefab: {fileID: 0}
+  selectionCirclePrefab: {fileID: 5381546690038664060, guid: f7a53d9417e02e644b0b1f0fb3d6ae2f,
+    type: 3}
   CurrentSelection: []
 --- !u!4 &691609811
 Transform:
@@ -20206,7 +20207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &707606870
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21153,7 +21154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1264928970512764, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4108826435968528, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26962,7 +26963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1264928970512764, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4108826435968528, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -33164,7 +33165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1264928970512764, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4108826435968528, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -33439,7 +33440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1264928970512764, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4108826435968528, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35905,8 +35906,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 883913524}
     m_Modifications:
     - target: {fileID: 1264928970512764, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 3}
-      propertyPath: m_TagString
-      value: Friendly
+      propertyPath: m_Name
+      value: Citizen
       objectReference: {fileID: 0}
     - target: {fileID: 4108826435968528, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35941,12 +35942,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4108826435968528, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108826435968528, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 197.74399
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114404571028573956, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 3}
-    - {fileID: 114721226855451488, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 3}
+    - target: {fileID: 4108826435968528, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 3}
 --- !u!1 &1286182918
 GameObject:
@@ -52043,7 +52050,8 @@ PrefabInstance:
       propertyPath: minHeight
       value: 20
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11488424, guid: 407bd5cbe8c43334bb1b25c0f3826974, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 407bd5cbe8c43334bb1b25c0f3826974, type: 3}
 --- !u!1 &1829365557
 GameObject:

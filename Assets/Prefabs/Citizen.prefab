@@ -1879,11 +1879,11 @@ GameObject:
   - component: {fileID: 95077632153696174}
   - component: {fileID: 65991449215205834}
   - component: {fileID: 195835880903108160}
-  - component: {fileID: 114404571028573956}
   - component: {fileID: 6839641827760342421}
+  - component: {fileID: 7866178177864019582}
   m_Layer: 12
   m_Name: Citizen
-  m_TagString: unit
+  m_TagString: Friendly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1958,7 +1958,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &114404571028573956
+--- !u!114 &6839641827760342421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264928970512764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be5ff37917fd15e4b8643e1ee1834e34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionCircle: {fileID: 0}
+--- !u!114 &7866178177864019582
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1972,20 +1985,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 100
   Resources: 0
---- !u!114 &6839641827760342421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1264928970512764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be5ff37917fd15e4b8643e1ee1834e34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectionCircle: {fileID: 5381546690038664060, guid: f7a53d9417e02e644b0b1f0fb3d6ae2f,
-    type: 3}
 --- !u!1 &1278251365167222
 GameObject:
   m_ObjectHideFlags: 0
