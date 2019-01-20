@@ -11,6 +11,9 @@ public class Selection : MonoBehaviour
 	[SerializeField] private GameObject _selectionDecalEnemy;
 	[SerializeField] private GameObject _selectionDecalNeutral;
 
+	private Transform _mouseDownHit;
+	private Transform _mouseUpHit;
+
 	private GameObject _selectionDecal;
 
 	public List<GameObject> CurrentSelection = new List<GameObject>();
@@ -21,6 +24,15 @@ public class Selection : MonoBehaviour
 		// If we press the left mouse button, begin selection and remember the location of the mouse
 		if (Input.GetMouseButtonDown(0))
 		{
+			RaycastHit hit;
+			var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+			if(Physics.Raycast(ray, out hit))
+			{
+				_mouseDownHit = hit.transform;
+			}
+
+
 			isSelecting = true;
 			mousePosition1 = Input.mousePosition;
 
@@ -35,8 +47,6 @@ public class Selection : MonoBehaviour
 				}
 			}
 		}
-
-
 
 		// If we let go of the left mouse button, end selection
 		if (Input.GetMouseButtonUp(0))
@@ -54,6 +64,25 @@ public class Selection : MonoBehaviour
 				}
 			}
 
+			RaycastHit hit;
+			var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+			if (Physics.Raycast(ray, out hit))
+			{
+				_mouseUpHit = hit.transform;
+			}
+
+
+			if (_mouseUpHit.tag != "ground")
+			{
+				if (_mouseDownHit == _mouseUpHit)
+				{
+					DrawSelectionDecal(_mouseDownHit.GetComponent<SelectableUnitComponent>());
+					CurrentSelection.Add(_mouseDownHit.gameObject);
+				}
+			}
+
+			// Debug
 			var sb = new StringBuilder();
 			sb.AppendLine(string.Format("Selecting [{0}] Units", selectedObjects.Count));
 			foreach (var selectedObject in selectedObjects)
@@ -72,30 +101,8 @@ public class Selection : MonoBehaviour
 				{
 					if (selectableObject.selectionCircle == null)
 					{
-
-						switch (selectableObject.SelectionDecalType)
-						{
-							case "friendly":
-								_selectionDecal = _selectionDecalFriendly;
-								break;
-
-							case "neutral":
-								_selectionDecal = _selectionDecalNeutral;
-								break;
-
-							case "enemy":
-								_selectionDecal = _selectionDecalEnemy;
-								break;
-						}
-
-						if (selectableObject.tag == "unit")
-						{
-							selectableObject.selectionCircle = Instantiate(_selectionDecal);
-							selectableObject.selectionCircle.transform.SetParent(selectableObject.transform, false);
-							selectableObject.selectionCircle.transform.eulerAngles = new Vector3(0, 0, 0);
-							var size = selectableObject.SelectionDecalSize;
-							selectableObject.selectionCircle.transform.localScale += new Vector3(size, 0.01f, size);
-						}
+						if(selectableObject.tag == "unit")
+						DrawSelectionDecal(selectableObject);
 					}
 				}
 				else
@@ -129,5 +136,29 @@ public class Selection : MonoBehaviour
 			Utils.DrawScreenRect(rect, new Color(0.8f, 0.8f, 0.95f, 0.1f));
 			Utils.DrawScreenRectBorder(rect, 2, new Color(0.8f, 0.8f, 0.95f));
 		}
+	}
+
+	void DrawSelectionDecal(SelectableUnitComponent selection)
+	{
+		switch (selection.SelectionDecalType)
+		{
+			case "friendly":
+				_selectionDecal = _selectionDecalFriendly;
+				break;
+
+			case "neutral":
+				_selectionDecal = _selectionDecalNeutral;
+				break;
+
+			case "enemy":
+				_selectionDecal = _selectionDecalEnemy;
+				break;
+		}
+
+		selection.selectionCircle = Instantiate(_selectionDecal);
+		selection.selectionCircle.transform.SetParent(selection.transform, false);
+		selection.selectionCircle.transform.eulerAngles = new Vector3(0, 0, 0);
+		var size = selection.SelectionDecalSize;
+		selection.selectionCircle.transform.localScale += new Vector3(size, 0.01f, size);
 	}
 }

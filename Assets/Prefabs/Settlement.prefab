@@ -217,7 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionCircle: {fileID: 0}
   SelectionDecalSize: 4
-  SelectionDecalType: friendly
+  SelectionDecalType: enemy
 --- !u!114 &355687415
 MonoBehaviour:
   m_ObjectHideFlags: 0
