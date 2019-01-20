@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 452544666103757497}
   - component: {fileID: 6251076038717939142}
-  - component: {fileID: 5240874077115690558}
   m_Layer: 0
   m_Name: SelectionDecalEnemy
   m_TagString: selector
@@ -53,15 +52,3 @@ MonoBehaviour:
   m_Offset: {x: 0, y: 0, z: 0}
   m_Size: {x: 1, y: 1, z: 1}
   m_IsCropModeEnabled: 0
---- !u!114 &5240874077115690558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5381546690038664060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22356b75c112d274b964e7238492157d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

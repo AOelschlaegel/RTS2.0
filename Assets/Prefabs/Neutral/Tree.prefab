@@ -153,8 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionCircle: {fileID: 0}
-  SelectionDecalSize: 2
+  SelectionDecalSize: 4
   SelectionDecalType: neutral
+  Selected: 0
 --- !u!1 &6372299789341236716
 GameObject:
   m_ObjectHideFlags: 0

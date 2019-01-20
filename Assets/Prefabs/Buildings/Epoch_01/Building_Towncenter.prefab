@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 8502663868222816715}
   - component: {fileID: 3837672481774349158}
   m_Layer: 0
-  m_Name: TownCenter
+  m_Name: Building_Towncenter
   m_TagString: building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -326,8 +326,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionCircle: {fileID: 0}
-  SelectionDecalSize: 4
+  SelectionDecalSize: 8
   SelectionDecalType: friendly
+  Selected: 0
 --- !u!1 &5123747834564251489
 GameObject:
   m_ObjectHideFlags: 0

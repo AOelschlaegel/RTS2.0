@@ -1882,7 +1882,7 @@ GameObject:
   - component: {fileID: 6839641827760342421}
   - component: {fileID: 7866178177864019582}
   m_Layer: 0
-  m_Name: Citizen
+  m_Name: Unit_Villager_Debug
   m_TagString: unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1971,8 +1971,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionCircle: {fileID: 0}
-  SelectionDecalSize: 1
+  SelectionDecalSize: 2
   SelectionDecalType: friendly
+  Selected: 0
 --- !u!114 &7866178177864019582
 MonoBehaviour:
   m_ObjectHideFlags: 0

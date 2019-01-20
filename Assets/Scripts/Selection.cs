@@ -17,10 +17,18 @@ public class Selection : MonoBehaviour
 	private GameObject _selectionDecal;
 
 	public List<GameObject> CurrentSelection = new List<GameObject>();
+	public bool UnitSelection;
 
 	void Update()
 	{
-
+		if (CurrentSelection.Count > 0)
+		{
+			if (CurrentSelection.Count > 1 || CurrentSelection[0].tag == "unit")
+			{
+				UnitSelection = true;
+			}
+			else UnitSelection = false;
+		}
 		// If we press the left mouse button, begin selection and remember the location of the mouse
 		if (Input.GetMouseButtonDown(0))
 		{
@@ -156,6 +164,7 @@ public class Selection : MonoBehaviour
 		}
 
 		selection.selectionCircle = Instantiate(_selectionDecal);
+		selection.selectionCircle.name = _selectionDecal.name;
 		selection.selectionCircle.transform.SetParent(selection.transform, false);
 		selection.selectionCircle.transform.eulerAngles = new Vector3(0, 0, 0);
 		var size = selection.SelectionDecalSize;

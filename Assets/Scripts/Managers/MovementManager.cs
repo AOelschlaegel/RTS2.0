@@ -7,7 +7,7 @@ public class MovementManager : MonoBehaviour
 {
 	public LayerMask groundLayer;
 
-	private SelectionManager _selectionManager;
+	private Selection _selectionManager;
 
 	public List<GameObject> selectedUnits;
 
@@ -19,31 +19,27 @@ public class MovementManager : MonoBehaviour
 	{
 		selectedUnits = new List<GameObject>();
 		playerAgents = new List<NavMeshAgent>();
-		_selectionManager = GameObject.Find("SelectionManager").GetComponent<SelectionManager>();
+		_selectionManager = GameObject.Find("Selection").GetComponent<Selection>();
 	}
 
 	private void Update()
 	{
-		selectedUnits = _selectionManager.SelectedObjects;
+		if (_selectionManager.UnitSelection)
+		{
+			playerAgents.Clear();
+			selectedUnits = _selectionManager.CurrentSelection;
 
-		if (_selectionManager.SelectedType == "Unit")
-		{
-			if (playerAgents.Count != selectedUnits.Count)
-				playerAgents.Add(selectedUnits[0].GetComponent<NavMeshAgent>());
-		}
-		if (playerAgents.Count != 0 && selectedUnits.Count != 0)
-		{
-			if (playerAgents[0].gameObject != selectedUnits[0].gameObject)
+			foreach (var unit in selectedUnits)
 			{
-				playerAgents.Clear();
+				playerAgents.Add(unit.GetComponent<NavMeshAgent>());
 			}
-		} else playerAgents.Clear();
 
-		if (Input.GetMouseButton(1))
-		{
-			foreach (NavMeshAgent agent in playerAgents)
+			if (Input.GetMouseButton(1))
 			{
-				agent.SetDestination(GetPointUnderCursor());
+				foreach (NavMeshAgent agent in playerAgents)
+				{
+					agent.SetDestination(GetPointUnderCursor());
+				}
 			}
 		}
 	}
@@ -55,9 +51,7 @@ public class MovementManager : MonoBehaviour
 	{
 		RaycastHit hitPosition;
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
 		Physics.Raycast(ray, out hitPosition, 100, groundLayer);
-
 		return hitPosition.point;
 	}
 }

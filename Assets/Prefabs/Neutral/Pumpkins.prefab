@@ -167,5 +167,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionCircle: {fileID: 0}
-  SelectionDecalSize: 3
+  SelectionDecalSize: 5
   SelectionDecalType: neutral
+  Selected: 0
