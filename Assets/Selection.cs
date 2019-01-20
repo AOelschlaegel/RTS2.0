@@ -7,7 +7,12 @@ public class Selection : MonoBehaviour
 	bool isSelecting = false;
 	Vector3 mousePosition1;
 
-	public GameObject selectionCirclePrefab;
+	[SerializeField] private GameObject _selectionDecalFriendly;
+	[SerializeField] private GameObject _selectionDecalEnemy;
+	[SerializeField] private GameObject _selectionDecalNeutral;
+
+	private GameObject _selectionDecal;
+
 	public List<GameObject> CurrentSelection = new List<GameObject>();
 
 	void Update()
@@ -41,8 +46,11 @@ public class Selection : MonoBehaviour
 			{
 				if (IsWithinSelectionBounds(selectableObject.gameObject))
 				{
-					selectedObjects.Add(selectableObject);
-					CurrentSelection.Add(selectableObject.gameObject);
+					if (selectableObject.gameObject.tag == "unit")
+					{
+						selectedObjects.Add(selectableObject);
+						CurrentSelection.Add(selectableObject.gameObject);
+					}
 				}
 			}
 
@@ -64,11 +72,30 @@ public class Selection : MonoBehaviour
 				{
 					if (selectableObject.selectionCircle == null)
 					{
-						selectableObject.selectionCircle = Instantiate(selectionCirclePrefab);
-						selectableObject.selectionCircle.transform.SetParent(selectableObject.transform, false);
-						selectableObject.selectionCircle.transform.eulerAngles = new Vector3(0, 0, 0);
-						var size = selectableObject.SelectionDecalSize;
-						selectableObject.selectionCircle.transform.localScale += new Vector3(size, 0.01f, size);
+
+						switch (selectableObject.SelectionDecalType)
+						{
+							case "friendly":
+								_selectionDecal = _selectionDecalFriendly;
+								break;
+
+							case "neutral":
+								_selectionDecal = _selectionDecalNeutral;
+								break;
+
+							case "enemy":
+								_selectionDecal = _selectionDecalEnemy;
+								break;
+						}
+
+						if (selectableObject.tag == "unit")
+						{
+							selectableObject.selectionCircle = Instantiate(_selectionDecal);
+							selectableObject.selectionCircle.transform.SetParent(selectableObject.transform, false);
+							selectableObject.selectionCircle.transform.eulerAngles = new Vector3(0, 0, 0);
+							var size = selectableObject.SelectionDecalSize;
+							selectableObject.selectionCircle.transform.localScale += new Vector3(size, 0.01f, size);
+						}
 					}
 				}
 				else

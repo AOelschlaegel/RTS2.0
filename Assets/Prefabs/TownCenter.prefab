@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1116911568736265276}
   - component: {fileID: 8238006182551484462}
   - component: {fileID: 7491110358552780968}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Bones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2798594300283431656}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: WaypointRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 2311782311649223049}
   - component: {fileID: 3401241947127603364}
   - component: {fileID: 5575776091601484956}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Fassade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 8843250526388347364}
   - component: {fileID: 1438520752793225695}
   - component: {fileID: 9117516412030751787}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,11 +274,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4530664598503148925}
-  - component: {fileID: 8944794442401006030}
-  - component: {fileID: 272820097500425313}
   - component: {fileID: 8502663868222816715}
   - component: {fileID: 3837672481774349158}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: TownCenter
   m_TagString: building
   m_Icon: {fileID: 0}
@@ -302,45 +300,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8944794442401006030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4479557332909391714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f89ebac4b9694a479a05de8e4ebd2d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _wayPointPrefab: {fileID: 1848681960033896, guid: 80c99f2121dc64e46ad1514f1b622b6b,
-    type: 3}
-  _dynamicObjectsRoot: {fileID: 0}
-  _spawnPoint: {fileID: 5123747834564251489}
-  _citizen: {fileID: 1264928970512764, guid: 969e033b0b9d6bc42b0ddb6ae1926d2d, type: 3}
-  _wayPointRoot: {fileID: 1625100914208052843}
-  SelectedObject: {fileID: 0}
-  IsCreating: 0
-  Selected: 0
-  HasWaypoint: 0
-  _buildTime: 0
-  Container: {fileID: 0}
---- !u!114 &272820097500425313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4479557332909391714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a70d1feceff0e4c7ea27232889c4caf6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  QueueTime: 0
-  HP: 1000
-  IsCreating: 0
 --- !u!65 &8502663868222816715
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -368,6 +327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionCircle: {fileID: 0}
   SelectionDecalSize: 4
+  SelectionDecalType: friendly
 --- !u!1 &5123747834564251489
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,7 +337,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5066257990331625257}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,7 +367,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1417077066698724152}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Geometry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -443,7 +403,7 @@ GameObject:
   - component: {fileID: 7155841758591781251}
   - component: {fileID: 4353577707952895408}
   - component: {fileID: 7353987249734027299}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
