@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 452544666103757497}
   - component: {fileID: 6251076038717939142}
+  - component: {fileID: 6203106951447827405}
   m_Layer: 0
-  m_Name: SelectionDecalFriendly
+  m_Name: DestinationDecal
   m_TagString: selector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 48c7047929fabb14d88c81f11ee3b781, type: 2}
+  m_Material: {fileID: 2100000, guid: 2c992f2989efbb54496803464cca5262, type: 2}
   m_DrawDistance: 1000
   m_FadeScale: 0.9
   m_UVScale: {x: 1, y: 1}
@@ -52,3 +53,19 @@ MonoBehaviour:
   m_Offset: {x: 0, y: 0, z: 0}
   m_Size: {x: 1, y: 1, z: 1}
   m_IsCropModeEnabled: 0
+--- !u!114 &6203106951447827405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5381546690038664060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f22f20ac4d8713747bd3dbf2abbd592a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _destinationDecalMaterial: {fileID: 2100000, guid: 2c992f2989efbb54496803464cca5262,
+    type: 2}
+  _destinationDecalColor: {r: 1, g: 0.92855203, b: 0, a: 0}
+  FadeSpeed: 1.5

@@ -1,20 +1,23 @@
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.HDPipeline;
 
 public class Selection : MonoBehaviour
 {
 	bool isSelecting = false;
 	Vector3 mousePosition1;
 
-	[SerializeField] private GameObject _selectionDecalFriendly;
-	[SerializeField] private GameObject _selectionDecalEnemy;
-	[SerializeField] private GameObject _selectionDecalNeutral;
+	[SerializeField] private DecalProjectorComponent _projector;
 
 	private Transform _mouseDownHit;
 	private Transform _mouseUpHit;
 
-	private GameObject _selectionDecal;
+	public Color EnemySelectionDecalColor;
+	public Color NeutralSelectionDecalColor;
+	public Color FriendlySelectionDecalColor;
+
+	[SerializeField] private Material _decalMaterial;
 
 	public List<GameObject> CurrentSelection = new List<GameObject>();
 	public bool UnitSelection;
@@ -151,20 +154,23 @@ public class Selection : MonoBehaviour
 		switch (selection.SelectionDecalType)
 		{
 			case "friendly":
-				_selectionDecal = _selectionDecalFriendly;
+				_decalMaterial.shader = Shader.Find("HDRP/Decal");
+				_decalMaterial.SetColor("_BaseColor", FriendlySelectionDecalColor);
 				break;
 
 			case "neutral":
-				_selectionDecal = _selectionDecalNeutral;
+				_decalMaterial.shader = Shader.Find("HDRP/Decal");
+				_decalMaterial.SetColor("_BaseColor", NeutralSelectionDecalColor);
 				break;
 
 			case "enemy":
-				_selectionDecal = _selectionDecalEnemy;
+				_decalMaterial.shader = Shader.Find("HDRP/Decal");
+				_decalMaterial.SetColor("_BaseColor", EnemySelectionDecalColor);
 				break;
 		}
 
-		selection.selectionCircle = Instantiate(_selectionDecal);
-		selection.selectionCircle.name = _selectionDecal.name;
+		selection.selectionCircle = Instantiate(_projector.gameObject);
+		selection.selectionCircle.name = _projector.name;
 		selection.selectionCircle.transform.SetParent(selection.transform, false);
 		selection.selectionCircle.transform.eulerAngles = new Vector3(0, 0, 0);
 		var size = selection.SelectionDecalSize;

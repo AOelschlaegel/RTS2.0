@@ -1881,6 +1881,7 @@ GameObject:
   - component: {fileID: 195835880903108160}
   - component: {fileID: 6839641827760342421}
   - component: {fileID: 7866178177864019582}
+  - component: {fileID: 5227830658845745517}
   m_Layer: 0
   m_Name: Unit_Villager_Debug
   m_TagString: unit
@@ -1914,7 +1915,7 @@ Animator:
   m_GameObject: {fileID: 1264928970512764}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f51c66857a046ac4f8b915bf9c6f1535, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4db504d77a3228640b53c6cb3fb3880a, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1988,6 +1989,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 100
   Resources: 0
+--- !u!114 &5227830658845745517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264928970512764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d852c910c401bc4399f0c6955d9e139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1278251365167222
 GameObject:
   m_ObjectHideFlags: 0
