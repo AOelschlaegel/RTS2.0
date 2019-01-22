@@ -19,6 +19,8 @@ public class MovementManager : MonoBehaviour
 	[SerializeField] private bool _isMovingToObject;
 	[SerializeField] private int _destinationDecalSize;
 
+	[SerializeField] private List<GameObject> _destinationDecals;
+
 	#region UnityEvents
 
 	private void Start()
@@ -26,6 +28,7 @@ public class MovementManager : MonoBehaviour
 		selectedUnits = new List<GameObject>();
 		playerAgents = new List<NavMeshAgent>();
 		_selectionManager = GameObject.Find("Selection").GetComponent<Selection>();
+		_destinationDecals = new List<GameObject>();
 	}
 
 	private void Update()
@@ -42,9 +45,14 @@ public class MovementManager : MonoBehaviour
 
 			if (Input.GetMouseButtonDown(1))
 			{
-				if(_uiRoot.Find("destination"))
+				if (_destinationDecals.Count > 0)
 				{
-					Destroy(_uiRoot.Find("destination").gameObject);
+					foreach (GameObject decal in _destinationDecals)
+					{
+						Destroy(decal);
+
+					}
+					_destinationDecals.Clear();
 				}
 
 				var hitObject = GetObjectUnderCursor();
@@ -59,16 +67,13 @@ public class MovementManager : MonoBehaviour
 
 					{
 						case "neutral":
-							var destinationDecal = Instantiate(_projector.gameObject, hitObject.transform.position, Quaternion.identity);
-							var size = selectableUnitComponent.SelectionDecalSize;
-							destinationDecal.transform.localScale += new Vector3(size, 0.01f, size);
-							destinationDecal.transform.eulerAngles = new Vector3(0, 0, 0);
-							destinationDecal.name = "destination";
-							destinationDecal.transform.SetParent(_uiRoot);
 
+							var size = selectableUnitComponent.SelectionDecalSize;
+							var position = GetObjectUnderCursor().transform.position;
+							DrawDecal(size, position);
 							break;
 
-							//TODO
+						//TODO
 						case "enemy":
 
 							break;
@@ -77,24 +82,39 @@ public class MovementManager : MonoBehaviour
 				else
 				{
 					_isMovingToObject = false;
-					var destination = Instantiate(_projector.gameObject, GetPointUnderCursor(), Quaternion.identity);
-					destination.name = "destination";
-					destination.transform.localScale += new Vector3(_destinationDecalSize, 0.01f, _destinationDecalSize);
-					destination.transform.SetParent(_uiRoot);
 				}
 
-				foreach (NavMeshAgent agent in playerAgents)
+				for (int x = 0; x < playerAgents.Count; x++)
 				{
-					if(_isMovingToObject == true)
+					if (_isMovingToObject)
 					{
-						agent.SetDestination(GetObjectUnderCursor().transform.position);
-					} else
-					agent.SetDestination(GetPointUnderCursor());
+						playerAgents[x].SetDestination(GetObjectUnderCursor().transform.position);
+					}
+					else
+					{
+						var offset = 1.5f;
+						var offsetPos = x * offset - playerAgents.Count / offset;
+
+						var position = GetPointUnderCursor() + new Vector3(offsetPos, 0, 0);
+						var size = _destinationDecalSize;
+						DrawDecal(size, position);
+						playerAgents[x].SetDestination(position);
+					}
 				}
 			}
 		}
 	}
 
+
+	private void DrawDecal(int size, Vector3 position)
+	{
+		var destinationDecal = Instantiate(_projector.gameObject, position, Quaternion.identity);
+		_destinationDecals.Add(destinationDecal);
+		destinationDecal.transform.localScale += new Vector3(size, 0.01f, size);
+		destinationDecal.transform.eulerAngles = new Vector3(0, 0, 0);
+		destinationDecal.name = "destination";
+		destinationDecal.transform.SetParent(_uiRoot);
+	}
 
 	#endregion
 
