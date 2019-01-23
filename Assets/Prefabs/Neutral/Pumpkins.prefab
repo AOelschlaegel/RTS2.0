@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4697388526481164}
   - component: {fileID: 33285912344219440}
   - component: {fileID: 23584669604171468}
-  m_Layer: 13
+  m_Layer: 11
   m_Name: Geometry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,10 +87,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4450632472526402}
   - component: {fileID: 65247992830257788}
-  - component: {fileID: 54537206156383136}
   - component: {fileID: 114972964326425692}
   - component: {fileID: 966663834378814042}
-  m_Layer: 13
+  - component: {fileID: 5721436110395555232}
+  m_Layer: 11
   m_Name: Pumpkins
   m_TagString: neutral
   m_Icon: {fileID: 0}
@@ -125,22 +125,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.0595083, y: 0.9423027, z: 2.1685064}
   m_Center: {x: -0.014845371, y: -0.028848648, z: -0.017667413}
---- !u!54 &54537206156383136
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1811523335206892}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &114972964326425692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +138,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Resources: 1000
+  AvailableGatherPoints: []
+  OccupiedGatherPoints: []
+  ObjectSize: 2x2
 --- !u!114 &966663834378814042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,3 +157,16 @@ MonoBehaviour:
   SelectionDecalSize: 5
   SelectionDecalType: neutral
   Selected: 0
+--- !u!114 &5721436110395555232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811523335206892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d77a4867460644d8116b49c31539fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GatherPoints: []

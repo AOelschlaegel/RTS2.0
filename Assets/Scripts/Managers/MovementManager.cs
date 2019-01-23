@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Experimental.Rendering.HDPipeline;
+using RTS;
 
 public class MovementManager : MonoBehaviour
 {
@@ -86,25 +87,63 @@ public class MovementManager : MonoBehaviour
 
 				for (int x = 0; x < playerAgents.Count; x++)
 				{
+					var Unit = playerAgents[x].gameObject;
+
 					if (_isMovingToObject)
 					{
-						playerAgents[x].SetDestination(GetObjectUnderCursor().transform.position);
+						var Object = GetObjectUnderCursor().gameObject;
+						var availableGatherPoints = Object.GetComponent<NeutralDataContainer>().AvailableGatherPoints;
+						var occupiedGatherPoints = Object.GetComponent<NeutralDataContainer>().OccupiedGatherPoints;
+						var ObjectPos = Object.transform.position;
+						var UnitPos = playerAgents[x].transform.position;
+						var Pos = Random.Range(0, availableGatherPoints.Count);
+						var gatherPoint = new NeutralDataContainer.GatherPoint();
+						gatherPoint.Object = Unit;
+						gatherPoint.Position = availableGatherPoints[Pos];
+
+
+						var UnitDataContainer = Unit.GetComponent<UnitDataContainer>();
+
+						if(UnitDataContainer.isGathering == true)
+						{
+							MoveUnit(playerAgents[x].gameObject, ObjectPos + UnitDataContainer.GatherPos);
+						} 
+						else
+						{
+							occupiedGatherPoints.Add(gatherPoint);
+							UnitDataContainer.GatherPos = availableGatherPoints[Pos];
+							UnitDataContainer.CurrentResource = Object;
+							UnitDataContainer.isGathering = true;
+							MoveUnit(playerAgents[x].gameObject, ObjectPos + availableGatherPoints[Pos]);
+						}
 					}
 					else
 					{
 						var offset = 1.5f;
 						var offsetPos = x * offset - playerAgents.Count / offset;
-
 						var position = GetPointUnderCursor() + new Vector3(offsetPos, 0, 0);
 						var size = _destinationDecalSize;
 						DrawDecal(size, position);
 						playerAgents[x].SetDestination(position);
+
+
+						var UnitDataContainer = Unit.GetComponent<UnitDataContainer>();
+						var gatherPoint = new NeutralDataContainer.GatherPoint();
+						gatherPoint.Object = Unit;
+						gatherPoint.Position = UnitDataContainer.GatherPos;
+						UnitDataContainer.GatherPos = new Vector3(0, 0, 0);
+						UnitDataContainer.CurrentResource = null;
+						UnitDataContainer.isGathering = false;
 					}
 				}
 			}
 		}
 	}
 
+	private void MoveUnit(GameObject unit, Vector3 destination)
+	{
+		unit.GetComponent<NavMeshAgent>().SetDestination(destination);
+	}
 
 	private void DrawDecal(int size, Vector3 position)
 	{

@@ -1,4 +1,5 @@
 using UnityEngine;
+using RTS;
 public class AnimationController : MonoBehaviour
 {
 	private Animator _animator;
