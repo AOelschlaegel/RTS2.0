@@ -1881,7 +1881,7 @@ GameObject:
   - component: {fileID: 195835880903108160}
   - component: {fileID: 6839641827760342421}
   - component: {fileID: 7866178177864019582}
-  - component: {fileID: 5227830658845745517}
+  - component: {fileID: 1936676480}
   m_Layer: 0
   m_Name: Unit_Villager_Debug
   m_TagString: unit
@@ -1989,7 +1989,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 100
   Resources: 0
---- !u!114 &5227830658845745517
+--- !u!114 &1936676480
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

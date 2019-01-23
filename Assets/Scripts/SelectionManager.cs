@@ -3,7 +3,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.HDPipeline;
 
-public class Selection : MonoBehaviour
+public class SelectionManager : MonoBehaviour
 {
 	bool isSelecting = false;
 	Vector3 mousePosition1;
