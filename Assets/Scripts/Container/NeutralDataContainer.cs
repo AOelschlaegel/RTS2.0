@@ -6,7 +6,7 @@ namespace RTS
 	public class NeutralDataContainer : MonoBehaviour
 	{
 		public int Resources = 1000;
-		public List<Vector3> AvailableGatherPoints;
+		public List<GatherPoint> AvailableGatherPoints;
 		public List<GatherPoint> OccupiedGatherPoints;
 		public string ObjectSize;
 
@@ -26,20 +26,36 @@ namespace RTS
 				}
 			}
 
+			if (OccupiedGatherPoints.Count == 0)
+			{
+				AvailableGatherPoints = GetComponent<DataContainer>().GatherPoints;
+			}
+
+			// If there are Occupied GatherPoints
 			if (OccupiedGatherPoints.Count > 0)
 			{
+				// Check each one
 				for (int i = 0; i < OccupiedGatherPoints.Count; i++)
 				{
-					if (AvailableGatherPoints.Contains(OccupiedGatherPoints[i].Position))
-					{
-						AvailableGatherPoints.Remove(OccupiedGatherPoints[i].Position);
-					}
+					// Reference the Unit
+					var _gatheringUnit = OccupiedGatherPoints[i].Object;
+					var _unitDataContainer = _gatheringUnit.GetComponent<UnitDataContainer>();
 
-					if (OccupiedGatherPoints[i].Object.GetComponent<UnitDataContainer>().isGathering == false)
+					// Compare 
+					foreach (GatherPoint _gatherpoint in AvailableGatherPoints)
 					{
-						AvailableGatherPoints.Add(OccupiedGatherPoints[i].Position);
-						OccupiedGatherPoints.Remove(OccupiedGatherPoints[i]);
-					}
+						if (_gatherpoint.Position == OccupiedGatherPoints[i].Position)
+						{
+							AvailableGatherPoints.Remove(_gatherpoint);
+						}
+
+						// If Unit is already gathering
+						if (_unitDataContainer.IsGathering == false)
+						{
+							AvailableGatherPoints.Add(OccupiedGatherPoints[i]);
+							OccupiedGatherPoints.Remove(OccupiedGatherPoints[i]);
+						}
+					}	
 				}
 			}
 		}

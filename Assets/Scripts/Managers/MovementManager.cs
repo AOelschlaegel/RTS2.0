@@ -87,53 +87,89 @@ public class MovementManager : MonoBehaviour
 
 				for (int x = 0; x < playerAgents.Count; x++)
 				{
-					var Unit = playerAgents[x].gameObject;
+					// Get selected Unit
+					var _unit = playerAgents[x].gameObject;
 
+					// Get the DataContainer of Selected Unit
+					var _unitDataContainer = _unit.GetComponent<UnitDataContainer>();
+
+					// If Destination is an Object
 					if (_isMovingToObject)
 					{
-						var Object = GetObjectUnderCursor().gameObject;
-						var availableGatherPoints = Object.GetComponent<NeutralDataContainer>().AvailableGatherPoints;
-						var occupiedGatherPoints = Object.GetComponent<NeutralDataContainer>().OccupiedGatherPoints;
-						var ObjectPos = Object.transform.position;
-						var UnitPos = playerAgents[x].transform.position;
-						var Pos = Random.Range(0, availableGatherPoints.Count);
-						var gatherPoint = new NeutralDataContainer.GatherPoint();
-						gatherPoint.Object = Unit;
-						gatherPoint.Position = availableGatherPoints[Pos];
+						// Get DestinationObject and it's Pos
+						var _destinationObject = GetObjectUnderCursor().gameObject;
+						var _destinationObjectPos = _destinationObject.transform.position;
 
+						// Get Available GatherPoints of DestinationObject
+						var _availableGatherPoints = _destinationObject.GetComponent<NeutralDataContainer>().AvailableGatherPoints;
 
-						var UnitDataContainer = Unit.GetComponent<UnitDataContainer>();
+						// Get Occupied GatherPoints of DestinationObject
+						var _occupiedGatherPoints = _destinationObject.GetComponent<NeutralDataContainer>().OccupiedGatherPoints;
 
-						if(UnitDataContainer.isGathering == true)
+						// Get Random GatherPointPosition from Available GatherPoints
+						var _randomPos = Random.Range(0, _availableGatherPoints.Count);
+
+						// Create new GatherPoint
+						var _gatherPoint = new NeutralDataContainer.GatherPoint();
+
+						_gatherPoint.Position = _availableGatherPoints[_randomPos].Position;
+
+						foreach (NeutralDataContainer.GatherPoint gatherPoint in _availableGatherPoints)
 						{
-							MoveUnit(playerAgents[x].gameObject, ObjectPos + UnitDataContainer.GatherPos);
-						} 
+							if (gatherPoint.Position == _availableGatherPoints[x].Position)
+							{
+								// Add variables to GatherPoint
+								_gatherPoint.Position = _availableGatherPoints[_randomPos].Position;
+								_gatherPoint.Object = _unit;
+							}
+						}
+
+						// If Unit is already gathering
+						if (_unitDataContainer.IsGathering == true)
+						{
+							// Stay at the same GatherPoint
+							MoveUnit(_unit, _destinationObjectPos + _unitDataContainer.GatherPoint.Position);
+						}
+
+						// If Unit is not gathering
 						else
 						{
-							occupiedGatherPoints.Add(gatherPoint);
-							UnitDataContainer.GatherPos = availableGatherPoints[Pos];
-							UnitDataContainer.CurrentResource = Object;
-							UnitDataContainer.isGathering = true;
-							MoveUnit(playerAgents[x].gameObject, ObjectPos + availableGatherPoints[Pos]);
+							// Add new GatherPoint to Occupied GatherPoints
+							_occupiedGatherPoints.Add(_gatherPoint);
+
+							// Add GatherPoint to Selected Unit
+							var _unitGatherPoint = new NeutralDataContainer.GatherPoint();
+							_unitGatherPoint.Object = _destinationObject;
+							_unitGatherPoint.Position = _gatherPoint.Position;
+							_unitDataContainer.GatherPoint = _unitGatherPoint;
+
+							// Move Unit to GatherPoint
+							MoveUnit(_unit, _destinationObjectPos + _unitDataContainer.GatherPoint.Position);
+
+							_unitDataContainer.IsGathering = true;
 						}
 					}
+
+					// If Destination is not an Object
 					else
 					{
+						// Create Distance between Units in Formation
 						var offset = 1.5f;
 						var offsetPos = x * offset - playerAgents.Count / offset;
 						var position = GetPointUnderCursor() + new Vector3(offsetPos, 0, 0);
-						var size = _destinationDecalSize;
-						DrawDecal(size, position);
-						playerAgents[x].SetDestination(position);
 
+						// Draw DestinationDecal on Map
+						DrawDecal(_destinationDecalSize, position);
 
-						var UnitDataContainer = Unit.GetComponent<UnitDataContainer>();
-						var gatherPoint = new NeutralDataContainer.GatherPoint();
-						gatherPoint.Object = Unit;
-						gatherPoint.Position = UnitDataContainer.GatherPos;
-						UnitDataContainer.GatherPos = new Vector3(0, 0, 0);
-						UnitDataContainer.CurrentResource = null;
-						UnitDataContainer.isGathering = false;
+						// Move Unit to Position
+						MoveUnit(_unit, position);
+
+						// Add Position to UnitContainer
+						_unitDataContainer.DestinationPosition = position;
+
+						// Initialize GatherPoint of Unit
+						_unitDataContainer.GatherPoint = new NeutralDataContainer.GatherPoint();
+						_unitDataContainer.IsGathering = false;
 					}
 				}
 			}

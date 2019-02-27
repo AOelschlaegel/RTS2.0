@@ -1,9 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
+using RTS;
 public class UnitDataContainer : MonoBehaviour
 {
 	public int HP = 100;
 	public int Resources;
-	public Vector3 GatherPos;
-	public GameObject CurrentResource;
-	public bool isGathering;
+	public bool IsGathering;
+	public NeutralDataContainer.GatherPoint GatherPoint;
+	public Vector3 DestinationPosition;
+	public Vector3 CurrentPosition;
+
+	private void Update()
+	{
+		CurrentPosition = transform.position;
+	}
 }
